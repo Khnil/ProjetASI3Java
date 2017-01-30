@@ -1,6 +1,7 @@
 package fr.insarouen.asi.prog.asiaventure.materiel;
 
-import java.lang.string;
+import java.lang.String;
+import java.lang.Object;
 
 public class Entite{
     private String nom;
@@ -11,23 +12,32 @@ public class Entite{
         this.monde=monde;
     }
 
-    public String getMonde(){
-        return monde;
+    public Monde getMonde(){
+        return this.monde;
     }
 
     public String getNom(){
-        return nom;
+        return this.nom;
     }
 
     public String toString(){
         String str = "";
-        for (int i=0;i<nom.length+monde.length;i++) {
-            str=("Monde: "+monde+"Personnage: "+nom);
-        }
+        str=("Monde: "+monde.toString()+"Personnage: "+nom);
         return str;
     }
 
-    public Boolean equals(){
+    public boolean equals(Object o){
+      boolean egales = false;
+      Entite tmp = (Entite)o;
+        if(this.getClass()==tmp.getClass()){
+          if((this.getNom().equals(tmp.getNom())&&(this.getMonde().equals(tmp.getMonde())))){
+             egales = true;
+          }
+        }
+        return egales;
+    }
 
+    public int hashCode(){
+      return nom.hashCode()*13 + monde.hashCode()*7;
     }
 }
