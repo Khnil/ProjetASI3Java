@@ -5,5 +5,7 @@ import java.lang.string;
 public class Entite{
     private string nom;
 
-    public 
+    public Entite(String nom, Monde monde){
+
+    }
 }
