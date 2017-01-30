@@ -20,10 +20,14 @@ public class Entite{
     }
 
     public String toString(){
-
+        String str = "";
+        for (int i=0;i<nom.length+monde.length;i++) {
+            str=("Monde: "+monde+"Personnage: "+nom);
+        }
+        return str;
     }
 
     public Boolean equals(){
-        
+
     }
 }
