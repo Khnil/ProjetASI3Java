@@ -1,7 +1,7 @@
 package fr.insarouen.asi.prog.asiaventure;
 
 import fr.insarouen.asi.prog.asiaventure.materiel.Entite;
-import fr.insarouen.asi.prog.asiaventure.materiel.Monde;
+import fr.insarouen.asi.prog.asiaventure.Monde;
 
 public class ClassMainTestEntite{
 

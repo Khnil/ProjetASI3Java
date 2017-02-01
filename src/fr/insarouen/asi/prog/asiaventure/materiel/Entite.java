@@ -2,6 +2,7 @@ package fr.insarouen.asi.prog.asiaventure.materiel;
 
 import java.lang.String;
 import java.lang.Object;
+import fr.insarouen.asi.prog.asiaventure.Monde;
 
 public class Entite{
     private String nom;

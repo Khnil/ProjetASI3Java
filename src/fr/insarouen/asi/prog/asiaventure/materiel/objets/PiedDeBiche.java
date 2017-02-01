@@ -1,10 +1,10 @@
 package fr.insarouen.asi.prog.asiaventure.materiel.objets;
 
 import fr.insarouen.asi.prog.asiaventure.materiel.Entite;
-import fr.insarouen.asi.prog.asiaventure.materiel.Monde;
+import fr.insarouen.asi.prog.asiaventure.Monde;
 
 public class PiedDeBiche extends Objet {
-    public PiedDeBiche(String nom, Monde monde) throws NomDEntiteDejaUtiliseDansLeMondeException{
+    public PiedDeBiche(String nom, Monde monde){
       super(nom,monde);
     }
     public boolean estDeplacable(){
