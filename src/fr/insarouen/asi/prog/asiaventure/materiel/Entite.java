@@ -4,29 +4,81 @@ import java.lang.String;
 import java.lang.Object;
 import fr.insarouen.asi.prog.asiaventure.Monde;
 
-public class Entite{
-    private String nom;
-    private Monde monde;
+/**
+  * classe définissant une entite quelconque du jeu (objet, piece, porte,...). <br>
+  * Une entite est définie par:
+  * <ul>
+  *   <li>Un nom</li>
+  *   <li>Un monde dans lequel elle est présente </li>
+  * </ul>
+  *
+  * @see Monde
+  *
+  * @author Tom/Constantin
+  * @version 1.0
+  */
 
+public class Entite{
+    /**
+      * Le nom de l'entite.
+      */
+    private String nom;
+    /**
+      *Le monde dans lequel est l'entite.
+      */
+    private Monde monde;
+    /**
+      * constructeur Entite <br>
+      * A la constructon de l'entite, le nom de celle ci ainsi que le monde dans lequel elle est présente sont fixés.
+      *
+      * @param nom
+      *        nom de l'entite
+      *
+      * @param monde
+      *        nom du monde dans lequel est l'entite
+      */
     public Entite(String nom, Monde monde){
         this.nom=nom;
         this.monde=monde;
     }
 
+    /**
+      * retourne le nom du monde dans lequel est l'entite.
+      *
+      * @return Le nom du monde
+      */
     public Monde getMonde(){
         return this.monde;
     }
 
+    /**
+      * retourne le nom de l'entite
+      *
+      * @return Le nom de l'entite
+      */
     public String getNom(){
         return this.nom;
     }
 
+    /**
+      * retourne un String donnant le monde complet de l'entité ainsi que le nom de celle ci.
+      *
+      * @return Un string avec le monde et le nom de l'entite.
+      */
     public String toString(){
         String str = "";
         str=("Monde: "+monde.toString()+"Personnage: "+nom);
         return str;
     }
 
+    /**
+      * retourne un booleen specifiant si l'objet donne est egal a l'entite courante.
+      *
+      * @param o
+      *        L'objet qu'on compare a l'entite courante.
+      *
+      * @return Un booleen disant si les objets sont egaux ou non.
+      */
     public boolean equals(Object o){
       boolean egales = false;
       Entite tmp = (Entite)o;
@@ -38,7 +90,13 @@ public class Entite{
         return egales;
     }
 
+    /**
+      * retourne le code d'identification d'une entite.
+      *
+      * @return Un integer représentant le code d'identification.
+      */
     public int hashCode(){
       return nom.hashCode()*13 + monde.hashCode()*7;
     }
 }
+
