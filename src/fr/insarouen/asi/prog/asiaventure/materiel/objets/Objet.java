@@ -18,6 +18,8 @@ public abstract class Objet extends Entite {
      * Constructeur Objet. <br>
      * A la construction d'un objet Objet, le constructeur de la classe Entite est appelé
      * avec le nom de l'Objet et le monde concerné.
+     * Objet étant un abstract, celui ci ne peut donc être instancié.
+     * Les tests se feront donc sur la classe PiedDeBiche.
      *
      * @param nom
      *        Nom de l'Objet
