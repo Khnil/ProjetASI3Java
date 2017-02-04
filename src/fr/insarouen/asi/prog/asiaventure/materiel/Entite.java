@@ -99,4 +99,3 @@ public class Entite{
       return nom.hashCode()*13 + monde.hashCode()*7;
     }
 }
-
