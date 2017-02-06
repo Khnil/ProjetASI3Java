@@ -2,6 +2,7 @@ package fr.insarouen.asi.prog.asiaventure.materiel.structure;
 
 import fr.insarouen.asi.prog.asiaventure.materiel.Entite;
 import fr.insarouen.asi.prog.asiaventure.materiel.structure.ElementStructurel;
+import fr.insarouen.asi.prog.asiaventure.materiel.vivants.Vivant;
 import java.lang.Object;
 import fr.insarouen.asi.prog.asiaventure.materiel.objets.Objet;
 import java.util.Arrays;
@@ -9,6 +10,7 @@ import fr.insarouen.asi.prog.asiaventure.Monde;
 
 public class Piece extends ElementStructurel implements java.io.Serializable {
     private Objet[] objets= new Objet[0];
+    private Vivant[] vivants= new Vivant[0];
 
     public Piece(String nom, Monde monde){
         super(nom, monde);
@@ -70,5 +72,43 @@ public class Piece extends ElementStructurel implements java.io.Serializable {
           str = str+" "+objets[i].getNom();
         }
         return str;
+    }
+
+    public void entrer(Vivant vivant){
+        Vivant[] vivants= new Vivant[1];
+        vivants[1] = vivant;
+    }
+
+    public Vivant sortir(Vivant vivant){
+        return sortir(vivant.getNom());
+    }
+
+    public Vivant sortir(String nomVivant){
+        Vivant vivant = null;
+        Vivant[] tmpvivants = new Vivant[vivants.length-1];
+        if (contientVivant(nomVivant)){
+            boolean estpresent = false;
+            int i=0;
+            do {
+                if(vivants[i].getNom().equals(nomVivant)){
+                    estpresent=true;
+                    i++;
+                }
+            }while (!estpresent);
+
+            vivant = vivants[i-1];
+            System.arraycopy(vivants,0,tmpvivants,0,i);
+            System.arraycopy(objets,i+1,tmpvivants,i,vivants.length-i-1);
+        }
+        vivants = tmpvivants;
+        return vivant;
+    }
+
+    public boolean contientVivant(Vivant vivant){
+        return contientVivant(vivant.getNom());
+    }
+
+    public boolean contientVivant(String nomVivant){
+        return true;
     }
 }
