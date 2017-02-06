@@ -7,8 +7,8 @@ public class ClassMainTestEntite{
 
   public static void main(String[] args){
     Monde Poney = new Monde("Poney");
-    Entite entite1 = new Entite("Jean Paul", Poney);
-    Entite entite2 = new Entite("Robin", Poney);
+    Entite entite1 = new Entite("Jean Paul", Poney){};
+    Entite entite2 = new Entite("Robin", Poney){};
 
     System.out.println(entite1.toString());
     System.out.println(entite1.getNom());

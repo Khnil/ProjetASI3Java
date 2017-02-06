@@ -7,12 +7,16 @@ import fr.insarouen.asi.prog.asiaventure.Monde;
 
 public class ClassMainTestPiedDeBiche {
   public static void main ( String[] args ) {
-    Monde plage = new Monde("Plage");
-    //Objet objetquelconque = new Objet("conque", plage); abstract = ne peut pas être instancié
-    PiedDeBiche metalrouille = new PiedDeBiche("metal rouille",plage);
-    /*system.out.println(objetquelconque.nom());
-    system.out.println(objetquelconque.monde());
-    system.out.println(objetquelconque.toString());*/
+    Monde Plage = new Monde("Plage");
+    Objet objetquelconque = new Objet("conque", Plage){
+        public boolean estDeplacable(){
+            return true;
+        }
+    }; //abstract = ne peut pas être instancié
+    PiedDeBiche metalrouille = new PiedDeBiche("metal rouille",Plage);
+    System.out.println(objetquelconque.getNom());
+    System.out.println(objetquelconque.getMonde());
+    System.out.println(objetquelconque.toString());
     System.out.println(metalrouille.getNom());
     System.out.println(metalrouille.getMonde());
     System.out.println(metalrouille.toString());

@@ -18,7 +18,7 @@ import fr.insarouen.asi.prog.asiaventure.Monde;
   * @version 1.0
   */
 
-public class Entite{
+public abstract class Entite{
     /**
       * Le nom de l'entite.
       */
@@ -67,7 +67,7 @@ public class Entite{
       */
     public String toString(){
         String str = "";
-        str=("Monde: "+monde.toString()+"Personnage: "+nom);
+        str=("Monde: "+monde.getNom()+"Nom de l'entite: "+nom);
         return str;
     }
 

@@ -11,7 +11,7 @@ import fr.insarouen.asi.prog.asiaventure.Monde;
  * @author Tom / Constantin
  * @version 1.0
  */
-public class ElementStructurel extends Entite {
+public abstract class ElementStructurel extends Entite {
 
     /**
      * Lors de la construction d'un objet ElementStructurel, le constructeur de la classe Entite est appelé avec le nom de l'elementStructurel et le monde associé.
