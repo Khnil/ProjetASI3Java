@@ -19,74 +19,47 @@ public class Piece extends ElementStructurel implements java.io.Serializable {
         objets[objets.length-1]= obj;
     }
 
-    public Objet retirer(Objet obj){
-        int i=0;
-        boolean estPresent = false;
-        do{
-            if (objets[i] == obj) {
-                objets[i] = null;
-                estPresent = true;
-            }
-            i++;
-        }while (i<objets.length && !estPresent );
-      Objet[] tempObjets = new Objet[objets.length-1];
-      int compteur = 0;
-      for (int j=0;j<tempObjets.length;j++) {
-        if (objets[j]!=null) {
-          tempObjets[compteur]=objets[j];
-          compteur++;
-        }
-      }
-      objets = tempObjets;
-      return obj;
-    }
-
     public Objet retirer(String nom){
-        int i=0;
-        boolean estPresent = false;
-        Objet obj=objets[0]; //si l'objet n'est pas present on retourne le premier de la piece par defaut.
-        do{
-            if (objets[i].getNom() == nom) {
-                obj = objets[i];
-                objets[i] = null;
-                estPresent = true;
-            }
-            i++;
-        }while (i<objets.length && !estPresent );
-      Objet[] tempObjets = new Objet[objets.length-1];
-      int compteur = 0;
-      for (int j=0;j<tempObjets.length;j++) {
-        if (objets[j]!=null) {
-          tempObjets[compteur]=objets[j];
-          compteur++;
+        Objet obj = null;
+        Objet[] tempObjets = new Objet[objets.length-1];
+        if (contientObjet(nom)){
+            boolean estpresent = false;
+            int i=0;
+            do {
+                if(objets[i].getNom().equals(nom)){
+                    estpresent=true;
+                    i++;
+                }
+            }while (!estpresent);
+
+            obj = objets[i-1];
+            System.arraycopy(objets,0,tempObjets,0,i);
+            System.arraycopy(objets,i+1,tempObjets,i,objets.length-i-1);
         }
-      }
-      objets = tempObjets;
-      return obj;
+        objets = tempObjets;
+        return obj;
     }
 
-    public boolean contientObjet(Objet obj){
-        boolean estpresent = false;
-        int i=0;
-        do{
-            if (objets[i]==obj){
-                estpresent = true;
-            }
-            i++;
-        }while(!estpresent && i<objets.length);
-        return estpresent;
+    public Objet retirer(Objet obj){
+        return retirer(obj.getNom());
     }
 
     public boolean contientObjet(String nom){
         boolean estpresent = false;
-        int i=0;
-        do{
-            if (objets[i].getNom()==nom){
-                estpresent = true;
-            }
-            i++;
-        }while(!estpresent && i<objets.length);
+        if (objets.length != 0){
+            int i=0;
+            do{
+                if (objets[i].getNom().equals(nom)){
+                    estpresent = true;
+                }
+                i++;
+            }while(!estpresent && i<objets.length);
+        }
         return estpresent;
+    }
+
+    public boolean contientObjet(Objet obj){
+        return contientObjet(obj.getNom());
     }
 
     public String toString(){
