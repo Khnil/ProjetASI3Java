@@ -1,8 +1,9 @@
 package fr.insarouen.asi.prog.asiaventure.materiel.objets;
 
-import fr.insarouen.asi.prog.asiaventure.materiel.objets.Vivant;
+import fr.insarouen.asi.prog.asiaventure.materiel.vivants.Vivant;
 import fr.insarouen.asi.prog.asiaventure.materiel.Entite;
 import fr.insarouen.asi.prog.asiaventure.Monde;
+import fr.insarouen.asi.prog.asiaventure.materiel.structure.Piece;
 
 public class ClassMainTestVivant{
     public static void main ( String[] args ){
