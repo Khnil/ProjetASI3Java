@@ -29,6 +29,7 @@ public class Vivant extends Entite{
             Objet obj = getObjet(nomObj);
             objets = Arrays.copyOf(objets, objets.length+1);
             objets[objets.length-1]= obj;
+            retirer(nomObj);
         }
     }
 
@@ -131,6 +132,15 @@ public class Vivant extends Entite{
     }
 
     public String toString(){
-        return "";
+        String str = "Nom du vivant: ";
+        str = str+getNom()+"\n";
+        str = str+"dans la piece: "+this.piece+"\n";
+        str = str+"PV: "+getPointVie()+"\n";
+        str = str+"PF: "+getPointForce()+"\n";
+        str = str+"Inventaire: "+"\n";
+        for (int i =0;i<objets.length;i++){ //a modif avec append
+          str = str+" "+objets[i].getNom();
+        }
+        return str;
     }
 }
