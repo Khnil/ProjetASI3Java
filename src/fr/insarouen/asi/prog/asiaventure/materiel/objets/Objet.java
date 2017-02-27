@@ -26,7 +26,7 @@ public abstract class Objet extends Entite {
      * @param monde
      *        Monde concerné
      */
-  public Objet(String nom, Monde monde){
+  public Objet(String nom, Monde monde) throws NomDEntiteDejaUtiliseDansLeMondeException{
     super(nom,monde);
   }
 

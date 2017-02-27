@@ -12,6 +12,7 @@ public class Piece extends ElementStructurel implements java.io.Serializable {
 
     private Objet[] objets= new Objet[0];
     private Vivant[] vivants= new Vivant[0];
+
     public static final Objet rien(Monde monde){
       return new Objet("rien",monde){
           public boolean estDeplacable(){
@@ -20,7 +21,7 @@ public class Piece extends ElementStructurel implements java.io.Serializable {
         };
       }
 
-    public Piece(String nom, Monde monde){
+    public Piece(String nom, Monde monde) throws NomDEntiteDejaUtiliseDansLeMondeException{
         super(nom, monde);
     }
 
@@ -29,7 +30,8 @@ public class Piece extends ElementStructurel implements java.io.Serializable {
         objets[objets.length-1]= obj;
     }
 
-    public Objet retirer(String nom){
+    public Objet retirer(String nom) throws ObjetAbsentDeLaPieceException,
+                     ObjetNonDeplacableException{
         Objet obj = rien(getMonde());
         if (objets.length !=0){
           Objet[] tempObjets = new Objet[objets.length-1];
@@ -52,7 +54,8 @@ public class Piece extends ElementStructurel implements java.io.Serializable {
         return obj;
     }
 
-    public Objet retirer(Objet obj){
+    public Objet retirer(Objet obj) throws ObjetAbsentDeLaPieceException,
+                     ObjetNonDeplacableException{
         return retirer(obj.getNom());
     }
 
@@ -89,11 +92,11 @@ public class Piece extends ElementStructurel implements java.io.Serializable {
         vivants[1] = vivant;
     }
 
-    public Vivant sortir(Vivant vivant){
+    public Vivant sortir(Vivant vivant) throws VivantAbsentDeLaPieceException{
         return sortir(vivant.getNom());
     }
 
-    public Vivant sortir(String nomVivant){
+    public Vivant sortir(String nomVivant) throws VivantAbsentDeLaPieceException{
         Vivant vivant = null;
         Vivant[] tmpvivants = new Vivant[vivants.length-1];
         if (contientVivant(nomVivant)){

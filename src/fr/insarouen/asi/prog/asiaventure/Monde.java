@@ -45,7 +45,8 @@ public class Monde implements Serializable{
      * @param entite
      *        entite à ajouter
      */
-    public void ajouter(Entite entite){
+    public void ajouter(Entite entite)throws NomDEntiteDejaUtiliseDansLeMondeException,
+                    EntiteDejaDansUnAutreMondeException{
       entites = Arrays.copyOf(entites, entites.length+1);
       entites[entites.length-1]= entite;
     }

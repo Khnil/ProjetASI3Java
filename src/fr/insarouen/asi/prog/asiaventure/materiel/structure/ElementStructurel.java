@@ -21,7 +21,7 @@ public abstract class ElementStructurel extends Entite {
      * @param monde
      *        Le monde concerné
      */
-  public ElementStructurel (String nom, Monde monde){
+  public ElementStructurel (String nom, Monde monde) throws NomDEntiteDejaUtiliseDansLeMondeException{
     super(nom,monde);
   }
 }
