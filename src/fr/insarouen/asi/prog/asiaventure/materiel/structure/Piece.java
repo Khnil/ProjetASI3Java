@@ -17,14 +17,6 @@ public class Piece extends ElementStructurel implements java.io.Serializable {
     private Objet[] objets= new Objet[0];
     private Vivant[] vivants= new Vivant[0];
 
-    public static final Objet rien(Monde monde){
-      return new Objet("rien",monde){
-          public boolean estDeplacable(){
-              return false;
-          }
-        };
-      }
-
     public Piece(String nom, Monde monde) throws NomDEntiteDejaUtiliseDansLeMondeException{
         super(nom, monde);
     }
@@ -36,7 +28,7 @@ public class Piece extends ElementStructurel implements java.io.Serializable {
 
     public Objet retirer(String nom) throws ObjetAbsentDeLaPieceException,
                      ObjetNonDeplacableException{
-        Objet obj = rien(getMonde());
+        Objet obj = null;
         if (objets.length !=0){
           Objet[] tempObjets = new Objet[objets.length-1];
           if (contientObjet(nom)){

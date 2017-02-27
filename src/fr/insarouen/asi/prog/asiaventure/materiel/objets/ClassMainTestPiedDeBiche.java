@@ -5,8 +5,8 @@ import fr.insarouen.asi.prog.asiaventure.materiel.objets.Objet;
 import fr.insarouen.asi.prog.asiaventure.materiel.Entite;
 import fr.insarouen.asi.prog.asiaventure.Monde;
 
-public class ClassMainTestPiedDeBiche {
-  public static void main ( String[] args ) {
+public class ClassMainTestPiedDeBiche{
+  public static void main( String[] args ) throws Exception {
     Monde Plage = new Monde("Plage");
     Objet objetquelconque = new Objet("conque", Plage){
         public boolean estDeplacable(){

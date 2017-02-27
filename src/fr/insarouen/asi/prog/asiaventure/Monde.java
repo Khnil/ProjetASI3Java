@@ -49,6 +49,12 @@ public class Monde implements Serializable{
      */
     public void ajouter(Entite entite)throws NomDEntiteDejaUtiliseDansLeMondeException,
                     EntiteDejaDansUnAutreMondeException{
+      if(getEntite(entite.getNom())!=null){
+        throw new NomDEntiteDejaUtiliseDansLeMondeException("Cette entite existe déjà dans ce monde.");
+      }
+      if(!(this.nom.equals(entite.getMonde().getNom()))){
+        throw new EntiteDejaDansUnAutreMondeException("Cette entite est déjà présente dans un autre monde.");
+      }
       entites = Arrays.copyOf(entites, entites.length+1);
       entites[entites.length-1]= entite;
     }

@@ -10,7 +10,7 @@ import fr.insarouen.asi.prog.asiaventure.Monde;
 import fr.insarouen.asi.prog.asiaventure.materiel.structure.Piece;
 
 public class ClassMainTestPiece{
-    public static void main ( String[] args ){
+    public static void main ( String[] args ) throws Exception{
         Monde maison = new Monde("Maison");
         Piece chambre = new Piece("Chambre",maison);
         PiedDeBiche pourCasserLaPorte = new PiedDeBiche("PiedDeBiche",maison);

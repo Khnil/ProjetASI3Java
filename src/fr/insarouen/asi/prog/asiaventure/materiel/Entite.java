@@ -4,6 +4,7 @@ import java.lang.String;
 import java.lang.Object;
 import fr.insarouen.asi.prog.asiaventure.Monde;
 import fr.insarouen.asi.prog.asiaventure.NomDEntiteDejaUtiliseDansLeMondeException;
+import fr.insarouen.asi.prog.asiaventure.EntiteDejaDansUnAutreMondeException;
 /**
   * classe définissant une entite quelconque du jeu (objet, piece, porte,...). <br>
   * Une entite est définie par:
@@ -40,6 +41,16 @@ public abstract class Entite{
     public Entite(String nom, Monde monde)throws NomDEntiteDejaUtiliseDansLeMondeException{
         this.nom=nom;
         this.monde=monde;
+        try{
+          monde.ajouter(this);
+        }
+        catch(EntiteDejaDansUnAutreMondeException e1){
+            System.err.println("Ne devrait jamais arriver");
+            System.exit(0);
+        }
+        catch(NomDEntiteDejaUtiliseDansLeMondeException e2){
+          this.nom= nom+"1";
+        }
     }
 
     /**

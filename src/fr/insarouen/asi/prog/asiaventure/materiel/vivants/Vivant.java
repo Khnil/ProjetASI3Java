@@ -26,14 +26,6 @@ public class Vivant extends Entite{
         System.arraycopy(stuff,0,this.stuff,0,stuff.length);
     }
 
-    public static final Objet rien(Monde monde){
-      return new Objet("rien",monde){
-          public boolean estDeplacable(){
-              return false;
-          }
-        };
-      }
-
     public void prendre(String nomObj) throws ObjetAbsentDeLaPieceException,
                     ObjetNonDeplacableException{
         if (this.piece.contientObjet(nomObj)) {
@@ -67,7 +59,7 @@ public class Vivant extends Entite{
 
 
     public Objet retirer(String nom){
-        Objet obj = rien(getMonde());
+        Objet obj = null;
         if (stuff.length != 0){
           Objet[] tempObjets = new Objet[stuff.length-1];
           if (contientObjet(nom)){
