@@ -3,7 +3,7 @@ package fr.insarouen.asi.prog.asiaventure.materiel;
 import java.lang.String;
 import java.lang.Object;
 import fr.insarouen.asi.prog.asiaventure.Monde;
-
+import fr.insarouen.asi.prog.asiaventure.NomDEntiteDejaUtiliseDansLeMondeException;
 /**
   * classe définissant une entite quelconque du jeu (objet, piece, porte,...). <br>
   * Une entite est définie par:

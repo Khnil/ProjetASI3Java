@@ -2,6 +2,7 @@ package fr.insarouen.asi.prog.asiaventure.materiel.objets;
 
 import fr.insarouen.asi.prog.asiaventure.materiel.Entite;
 import fr.insarouen.asi.prog.asiaventure.Monde;
+import fr.insarouen.asi.prog.asiaventure.NomDEntiteDejaUtiliseDansLeMondeException;
 
 /**
  * Classe de base pour représenter les objets.<br>
