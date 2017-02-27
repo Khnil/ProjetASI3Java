@@ -29,25 +29,30 @@ public class Piece extends ElementStructurel implements java.io.Serializable {
     public Objet retirer(String nom) throws ObjetAbsentDeLaPieceException,
                      ObjetNonDeplacableException{
         Objet obj = null;
+        boolean estpresent = false;
+        int i=0;
+        Objet[] tempObjets = new Objet[objets.length-1];
         if (objets.length !=0){
-          Objet[] tempObjets = new Objet[objets.length-1];
           if (contientObjet(nom)){
-              boolean estpresent = false;
-              int i=0;
               do {
                   if(objets[i].getNom().equals(nom)){
                       estpresent=true;
                   }
                   i++;
               }while (!estpresent);
-
+            }
+          if(!estpresent) {
+            throw new ObjetAbsentDeLaPieceException("L'objet "+nom+" à retirer n'est pas dans la pièce "+this.getNom()+".");
+          }
               obj = objets[i-1];
+          if(!obj.estDeplacable()){
+            throw new ObjetNonDeplacableException("L'objet "+nom+" n'est pas déplacable.");
+          }
               System.arraycopy(objets,0,tempObjets,0,i-1);
               System.arraycopy(objets,i,tempObjets,i-1,objets.length-i);
           }
           objets = tempObjets;
-        }
-        return obj;
+          return obj;
     }
 
     public Objet retirer(Objet obj) throws ObjetAbsentDeLaPieceException,
@@ -104,6 +109,10 @@ public class Piece extends ElementStructurel implements java.io.Serializable {
                     i++;
                 }
             }while (!estpresent);
+
+            if(!estpresent) {
+              throw new VivantAbsentDeLaPieceException("Le vivant "+nomVivant+" n'est pas dans la pièce "+this.getNom()+".");
+            }
 
             vivant = vivants[i-1];
             System.arraycopy(vivants,0,tmpvivants,0,i);
