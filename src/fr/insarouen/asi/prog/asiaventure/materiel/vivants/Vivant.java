@@ -8,8 +8,8 @@ import fr.insarouen.asi.prog.asiaventure.materiel.vivants.Vivant;
 import java.lang.String;
 import java.util.Arrays;
 import fr.insarouen.asi.prog.asiaventure.NomDEntiteDejaUtiliseDansLeMondeException;
+import fr.insarouen.asi.prog.asiaventure.materiel.structure.ObjetAbsentDeLaPieceException;
 import fr.insarouen.asi.prog.asiaventure.materiel.objets.ObjetNonDeplacableException;
-import fr.insarouen.asi.prog.asiaventure.materiel.objets.ObjetAbsentDeLaPieceException;
 
 public class Vivant extends Entite{
     private int PV;
