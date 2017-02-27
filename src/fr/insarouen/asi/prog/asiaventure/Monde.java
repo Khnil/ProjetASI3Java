@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.lang.String;
 import java.util.Arrays;
 import fr.insarouen.asi.prog.asiaventure.materiel.Entite;
+import fr.insarouen.asi.prog.asiaventure.NomDEntiteDejaUtiliseDansLeMondeException;
+import fr.insarouen.asi.prog.asiaventure.EntiteDejaDansUnAutreMondeException;
 
 /**
  * classe définissant un monde du jeu. <br>

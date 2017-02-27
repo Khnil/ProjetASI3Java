@@ -7,6 +7,10 @@ import java.lang.Object;
 import fr.insarouen.asi.prog.asiaventure.materiel.objets.Objet;
 import java.util.Arrays;
 import fr.insarouen.asi.prog.asiaventure.Monde;
+import fr.insarouen.asi.prog.asiaventure.NomDEntiteDejaUtiliseDansLeMondeException;
+import fr.insarouen.asi.prog.asiaventure.materiel.structure.ObjetNonDeplacableException;
+import fr.insarouen.asi.prog.asiaventure.materiel.structure.ObjetAbsentDeLaPieceException;
+import fr.insarouen.asi.prog.asiaventure.materiel.vivants.VivantAbsentDeLaPieceException;
 
 public class Piece extends ElementStructurel implements java.io.Serializable {
 
