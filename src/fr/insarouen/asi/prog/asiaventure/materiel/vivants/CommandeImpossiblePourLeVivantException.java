@@ -1,5 +1,13 @@
 package fr.insarouen.asi.prog.asiaventure.materiel.vivants;
 
-public class CommandeImpossiblePourLeVivantException extends VivantException{
+import java.lang.String;
 
+public class CommandeImpossiblePourLeVivantException extends VivantException{
+  public CommandeImpossiblePourLeVivantException(String s){
+    super(s);
+  }
+
+  public CommandeImpossiblePourLeVivantException(){
+
+  }
 }

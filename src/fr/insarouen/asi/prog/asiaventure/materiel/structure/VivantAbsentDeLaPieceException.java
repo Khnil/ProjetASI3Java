@@ -1,6 +1,13 @@
 package fr.insarouen.asi.prog.asiaventure.materiel.structure;
 
-public class VivantAbsentDeLaPieceException
-extends PieceException{
+import java.lang.String;
 
+public class VivantAbsentDeLaPieceException extends PieceException{
+  public VivantAbsentDeLaPieceException(String s){
+    super(s);
+  }
+
+  public VivantAbsentDeLaPieceException(){
+
+  }
 }

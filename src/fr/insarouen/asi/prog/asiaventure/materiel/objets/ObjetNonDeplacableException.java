@@ -1,5 +1,13 @@
 package fr.insarouen.asi.prog.asiaventure.materiel.objets;
 
-public class ObjetNonDeplacableException extends ObjetException{
+import java.lang.String;
 
+public class ObjetNonDeplacableException extends ObjetException{
+  public ObjetNonDeplacableException(String s){
+    super(s);
+  }
+
+  public ObjetNonDeplacableException(){
+
+  }
 }

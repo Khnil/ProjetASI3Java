@@ -1,5 +1,13 @@
 package fr.insarouen.asi.prog.asiaventure.materiel.vivants;
 
-public class ObjetNonPossedeParLeVivantException extends VivantException{
+import java.lang.String;
 
+public class ObjetNonPossedeParLeVivantException extends VivantException{
+  public ObjetNonPossedeParLeVivantException(String s){
+    super(s);
+  }
+
+  public ObjetNonPossedeParLeVivantException(){
+
+  }
 }
