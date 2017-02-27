@@ -15,7 +15,7 @@ public class Vivant extends Entite{
     private Objet[] stuff= new Objet[0];
 
 
-    public Vivant(String nom, Monde monde, int pointVie, int pointForce, Piece piece, Objet ... objets){
+    public Vivant(String nom, Monde monde, int pointVie, int pointForce, Piece piece, Objet ... objets) throws NomDEntiteDejaUtiliseDansLeMondeException {
         super(nom,monde);
         this.PV = pointVie;
         this.PF = pointForce;
@@ -31,7 +31,8 @@ public class Vivant extends Entite{
         };
       }
 
-    public void prendre(String nomObj){
+    public void prendre(String nomObj) throws ObjetAbsentDeLaPieceException,
+                    ObjetNonDeplacableException{
         if (this.piece.contientObjet(nomObj)) {
             Objet obj = this.piece.retirer(nomObj);
             Objet[] temp = new Objet[this.stuff.length+1];
@@ -41,7 +42,8 @@ public class Vivant extends Entite{
             }
     }
 
-    public void prendre(Objet obj){
+    public void prendre(Objet obj) throws ObjetAbsentDeLaPieceException,
+                    ObjetNonDeplacableException{
         prendre(obj.getNom());
     }
 
@@ -84,7 +86,7 @@ public class Vivant extends Entite{
         return obj;
     }
 
-    public void deposer(String nomObj){
+    public void deposer(String nomObj) throws ObjetNonPossedeParLeVivantException{
         if (!contientObjet(nomObj)) {
             Objet obj = getObjet(nomObj);
             stuff = Arrays.copyOf(stuff, stuff.length+1);
@@ -94,7 +96,7 @@ public class Vivant extends Entite{
         }
     }
 
-    public void deposer(Objet obj){
+    public void deposer(Objet obj) throws ObjetNonPossedeParLeVivantException{
         deposer(obj.getNom());
     }
 
