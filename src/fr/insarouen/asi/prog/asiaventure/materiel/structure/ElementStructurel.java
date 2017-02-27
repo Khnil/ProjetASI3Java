@@ -2,6 +2,7 @@ package fr.insarouen.asi.prog.asiaventure.materiel.structure;
 
 import fr.insarouen.asi.prog.asiaventure.materiel.Entite;
 import fr.insarouen.asi.prog.asiaventure.Monde;
+import fr.insarouen.asi.prog.asiaventure.NomDEntiteDejaUtiliseDansLeMondeException;
 
 /**
  * Classe qui permet de décrire la structure d'un élement. <br>
