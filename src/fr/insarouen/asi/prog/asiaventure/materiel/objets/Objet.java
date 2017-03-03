@@ -22,6 +22,8 @@ public abstract class Objet extends Entite {
      * Objet étant un abstract, celui ci ne peut donc être instancié.
      * Les tests se feront donc sur la classe PiedDeBiche.
      *
+     * @throws NomDEntiteDejaUtiliseDansLeMondeException
+     *        Renvoie l'exception d'un nom d'entité utilisé comme doublon dans monde.
      * @param nom
      *        Nom de l'Objet
      * @param monde
