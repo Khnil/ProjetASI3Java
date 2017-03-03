@@ -37,6 +37,10 @@ public abstract class Entite{
       *
       * @param monde
       *        nom du monde dans lequel est l'entite
+      *
+      * @throws NomDEntiteDejaUtiliseDansLeMondeException
+      *        Renvoie l'erreur d'un nom d'entité déjà utilisé dans monde.
+      *
       */
     public Entite(String nom, Monde monde)throws NomDEntiteDejaUtiliseDansLeMondeException{
         this.nom=nom;

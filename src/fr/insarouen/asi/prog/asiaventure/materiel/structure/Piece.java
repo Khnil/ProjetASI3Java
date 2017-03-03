@@ -12,6 +12,15 @@ import fr.insarouen.asi.prog.asiaventure.materiel.objets.ObjetNonDeplacableExcep
 import fr.insarouen.asi.prog.asiaventure.materiel.structure.ObjetAbsentDeLaPieceException;
 import fr.insarouen.asi.prog.asiaventure.materiel.structure.VivantAbsentDeLaPieceException;
 
+/**
+ * Classe qui permet de décrire une pièce.Celle ci est composée d'une liste d'objets et d'une liste de vivants présents à l'intérieur. <br>
+ * Cette classe hérite de la classe ElementStructurel. elle possède donc un nom et un monde.
+ *
+ * @see ElementStructurel
+ *
+ * @author Tom / Constantin
+ * @version 1.0
+ */
 public class Piece extends ElementStructurel implements java.io.Serializable {
 
     private Objet[] objets= new Objet[0];
@@ -170,10 +179,35 @@ public class Piece extends ElementStructurel implements java.io.Serializable {
         vivants[vivants.length-1]= vivant;
     }
 
+    /**
+     * Il s'agit de la fonction sortir sur un vivant mais avec le vivant en entrée et non son nom.
+     *
+     * @param vivant
+     *        Le vivant que l'on cherche à retirer.
+     *
+     * @return Le vivant que l'on a retiré de la pièce.
+     *
+     * @throws VivantAbsentDeLaPieceException
+     *      Renvoie l'exception du vivant absent de la pièce.
+     *
+     */
     public Vivant sortir(Vivant vivant) throws VivantAbsentDeLaPieceException{
         return sortir(vivant.getNom());
     }
 
+    /**
+     * Cette fonction fait sortir le vivant de nom 'nom' de la pièce. Elle diminue également la taille du tableau vivants d'une case. Elle retourne enfin le vivant en question.
+     * Pour ce faire elle vérifie la présence du vivant au préalable dans la pièce avant de le supprimer du tableau. Si celui ci n'est pas dans la pièce la méthode renvoie une exception et la fonction renvoie null.
+     *
+     * @param nom
+     *      Le nom du vivant que l'on cherche à retirer.
+     *
+     * @return Le vivant dont le nom est 'nom' ou null si celui ci n'est pas présent.
+     *
+     * @throws VivantAbsentDeLaPieceException
+     *      Renvoie l'exception d'un objet absent de la pièce.
+     *
+     */
     public Vivant sortir(String nomVivant) throws VivantAbsentDeLaPieceException{
         Vivant vivant = null;
         Vivant[] tmpvivants = new Vivant[vivants.length-1];
@@ -199,14 +233,44 @@ public class Piece extends ElementStructurel implements java.io.Serializable {
         return vivant;
     }
 
+    /**
+     *Cette méthode vérifie la présence du vivant 'vivant' dans le tableau vivants et retourne la réponse sous forme de booléen.
+     *
+     * @param vivant
+     *        Le vivant dont on cherche à vérifier la présence dans la pièce.
+     *
+     */
     public boolean contientVivant(Vivant vivant){
         return contientVivant(vivant.getNom());
     }
 
+    /**
+     *Cette méthode vérifie la présence de l'objet obj dans le tableau objets et retourne la réponse sous forme de booléen.
+     *
+     * @param obj
+     *        L'objet dont on cherche à vérifier la présence dans la pièce.
+     *
+     */
     public boolean contientVivant(String nomVivant){
-        return true;
+        boolean estpresent = false;
+        if (vivants.length != 0){
+            int i=0;
+            do{
+                if (vivants[i].getNom().equals(nomVivant)){
+                    estpresent = true;
+                }
+                i++;
+            }while(!estpresent && i<vivants.length);
+        }
+        return estpresent;
     }
 
+    /**
+     *Cette méthode renvoie le tableau objets
+     *
+     * @return Le tableau objets de la pièce.
+     *
+     */
     public Objet[] getObjets(){
       return objets;
     }

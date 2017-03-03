@@ -46,6 +46,12 @@ public class Monde implements Serializable{
      *
      * @param entite
      *        entite à ajouter
+     *
+     * @throws NomDEntiteDejaUtiliseDansLeMondeException
+     *        Renvoie l'exception d'un nom d'entite déjà présent dans monde.
+     *
+     * @throws EntiteDejaDansUnAutreMondeException
+     *        Renvoie l'exception d'une entité déjà présente dans un autre monde que le monde actuel.
      */
     public void ajouter(Entite entite)throws NomDEntiteDejaUtiliseDansLeMondeException,
                     EntiteDejaDansUnAutreMondeException{
