@@ -15,7 +15,7 @@ public class ASIAventureException extends java.lang.Exception{
 
     /**
      * Constructeur ASIAventureException. <br>
-     * A la construction d'une exception, le constructeur de la classeException est appelé
+     * A la construction d'une exception, le constructeur de la classe Exception est appelé
      * avec le string à afficher.
      *
      * @param s
