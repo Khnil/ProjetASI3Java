@@ -54,9 +54,11 @@ public class Monde implements Serializable{
      *        Renvoie l'exception d'une entité déjà présente dans un autre monde que le monde actuel.
      */
     public void ajouter(Entite entite)throws NomDEntiteDejaUtiliseDansLeMondeException,
-                    EntiteDejaDansUnAutreMondeException{
-      if(getEntite(entite.getNom())!=null){
-        throw new NomDEntiteDejaUtiliseDansLeMondeException("Cette entite existe déjà dans ce monde.");
+                EntiteDejaDansUnAutreMondeException{
+      for(int i=0;i<entites.length;i++){
+          if(entites[i].getNom() == entite.getNom()){
+              throw new NomDEntiteDejaUtiliseDansLeMondeException("Cette entite existe déjà dans ce monde.");
+          }
       }
       if(!(this.nom.equals(entite.getMonde().getNom()))){
         throw new EntiteDejaDansUnAutreMondeException("Cette entite est déjà présente dans un autre monde.");

@@ -29,4 +29,10 @@ public class TestMonde {
         Entite entite = new Entite("truc",monde){};
         assertThat(monde.getEntite("truc"),IsEqual.equalTo(entite));
     }
+
+    @Test(expected=NomDEntiteDejaUtiliseDansLeMondeException.class)
+    public void testAjouterDeuxFois() throws NomDEntiteDejaUtiliseDansLeMondeException,EntiteDejaDansUnAutreMondeException{
+        Entite entite1 = new Entite("e1",monde){};
+        Entite entite2 = new Entite("e1",monde){};
+    }
 }
