@@ -40,6 +40,6 @@ public class TestPiece {
         PiedDeBiche objet = new PiedDeBiche("pied",monde);
         piece.deposer(objet);
         piece.retirer(objet);
-        assertThat(piece.contientObjet("pied"),IsEqual.equalTo(true));
+        assertThat(piece.contientObjet("pied"),IsEqual.equalTo(false));
     }
 }

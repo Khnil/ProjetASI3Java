@@ -5,7 +5,7 @@ import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
 @SuiteClasses({
-    TestElementStructurel.class
+    TestElementStructurel.class,
     TestPiece.class
 })
 
