@@ -40,5 +40,6 @@ public class TestEntite {
   @Test
   public void testHashCode() {
       assertThat(entite.hashCode(), IsEqual.equalTo(entite.hashCode()));
+      
   }
       }
