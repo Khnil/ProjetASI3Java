@@ -25,13 +25,21 @@ public class TestPiece {
     @Test
     public void testConstructeur() throws Exception{
         assertThat(piece.getNom(),IsEqual.equalTo("classe"));
-        assertThat(piece.getMonde(),IsEqual.equalTo("monde"));
+        assertThat(piece.getMonde(),IsEqual.equalTo(monde));
     }
 
     @Test
     public void testDeposer() throws Exception{
         PiedDeBiche objet = new PiedDeBiche("pied",monde);
         piece.deposer(objet);
+        assertThat(piece.contientObjet("pied"),IsEqual.equalTo(true));
+    }
+
+    @Test
+    public void testRetirer() throws Exception{
+        PiedDeBiche objet = new PiedDeBiche("pied",monde);
+        piece.deposer(objet);
+        piece.retirer(objet);
         assertThat(piece.contientObjet("pied"),IsEqual.equalTo(true));
     }
 }
