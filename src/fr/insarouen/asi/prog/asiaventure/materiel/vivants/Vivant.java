@@ -212,7 +212,6 @@ public class Vivant extends Entite{
         boolean estPresent = false;
         Objet obj = null;
         if(stuff.length !=0){
-          obj=stuff[0]; //si l'objet n'est pas present on retourne le premier de l'inventaire par defaut
           do{
               if (stuff[i].getNom().equals(nomObjet)) {
                   obj = stuff[i];
