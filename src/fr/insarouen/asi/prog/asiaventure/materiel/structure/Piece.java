@@ -24,8 +24,8 @@ import fr.insarouen.asi.prog.asiaventure.materiel.structure.VivantAbsentDeLaPiec
  */
 public class Piece extends ElementStructurel implements java.io.Serializable {
 
-    private HashMap <String,Objet> objets= new HashMap<>();//HashMap
-    private HashMap <String,Vivant> vivants= new HashMap<>();//HashMap
+    private HashMap <String,Objet> objets= new HashMap<String,Objet>();//HashMap
+    private HashMap <String,Vivant> vivants= new HashMap<String,Vivant>();//HashMap
 
     /**
      * Lors de la construction d'une pièce, le constructeur de la classe ElementStructurel est appelé avec le nom de la pièce et le monde associé.

@@ -1,7 +1,7 @@
-package fr.insarouen.asi.prog.asiaventure;
+package fr.insarouen.asi.prog.asiaventure.materiel;
 
-import fr.insarouen.asi.prog.asiaventure.materiel.ActivationImpossibleException;
 import java.lang.String;
+import fr.insarouen.asi.prog.asiaventure.materiel.ActivationImpossibleException;
 
 /**
  * Classe de base pour représenter une exception sur une activation impossible avec l'objet donné.<br>

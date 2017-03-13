@@ -40,7 +40,7 @@ public class Monde implements Serializable{
    */
     public Monde(String nomDuMonde){
       this.nom = nomDuMonde;
-      entites = new HashMap<>();
+      entites = new HashMap<String,Entite>();
     }
 
     /**

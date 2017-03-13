@@ -36,7 +36,7 @@ public class Vivant extends Entite{
     private int PV;
     private int PF;
     private Piece piece;
-    private HashMap <String,Objet> stuff= new HashMap<>();  //Hashmap
+    private HashMap <String,Objet> stuff= new HashMap<String,Objet>();  //Hashmap
 
     /**
      * Lors de la construction d'un vivant, le constructeur de la classe Entite est appelé avec le nom du vivant et le monde associé.

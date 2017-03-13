@@ -1,4 +1,4 @@
-package fr.insarouen.asi.prog.asiaventure;
+package fr.insarouen.asi.prog.asiaventure.materiel;
 
 import fr.insarouen.asi.prog.asiaventure.ASIAventureException;
 import java.lang.String;
