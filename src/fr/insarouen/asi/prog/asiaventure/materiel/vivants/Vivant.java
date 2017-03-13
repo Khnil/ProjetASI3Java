@@ -1,4 +1,6 @@
 package fr.insarouen.asi.prog.asiaventure.materiel.vivants;
+
+import java.util.HashMap;
 import java.lang.Object;
 import fr.insarouen.asi.prog.asiaventure.materiel.Entite;
 import fr.insarouen.asi.prog.asiaventure.materiel.objets.Objet;
@@ -34,7 +36,7 @@ public class Vivant extends Entite{
     private int PV;
     private int PF;
     private Piece piece;
-    private Objet[] stuff= new Objet[0];
+    private HashMap <String,Objet> stuff= new HashMap<>();  //Hashmap
 
     /**
      * Lors de la construction d'un vivant, le constructeur de la classe Entite est appelé avec le nom du vivant et le monde associé.
@@ -60,8 +62,11 @@ public class Vivant extends Entite{
         this.PV = pointVie;
         this.PF = pointForce;
         this.piece = piece;
-        System.arraycopy(stuff,0,this.stuff,0,stuff.length);
-    }
+        for(int i=0;i<= objets.length;i++){
+            this.stuff.put(objets[i].getNom(),objets[i]);
+        }
+        this.piece.entrer(this);
+        }
 
     /**
      * Cette méthode fait prendre au vivant l'objet de nom 'nomObj' de la pièce et le met dans son stuff. Pour celà il retire l'objet de la pièce dans laquelle il est (à l'aide de la fonction retirer) et ajoute cet objet dans le tableau stuff.
@@ -77,13 +82,8 @@ public class Vivant extends Entite{
      */
     public void prendre(String nomObj) throws ObjetAbsentDeLaPieceException,
                     ObjetNonDeplacableException{
-        if (this.piece.contientObjet(nomObj)) {
-            Objet obj = this.piece.retirer(nomObj);
-            Objet[] temp = new Objet[this.stuff.length+1];
-            System.arraycopy(stuff,0,temp,0,this.stuff.length);
-            temp[this.stuff.length]=obj;
-            this.stuff=temp;
-            }
+        Objet obj=this.piece.retirer(nomObj);
+        this.stuff.put(obj.getNom(),obj);
     }
 
     /**
@@ -103,29 +103,6 @@ public class Vivant extends Entite{
         prendre(obj.getNom());
     }
 
-    /**
-     * Cette méthode vérifie la présence de l'objet de nom "nom" dans le tableau objets de la pièce où le vivant est et retourne la réponse sous forme de booléen.
-     *
-     * @param nom
-     *        Le nom de l'objet dont on cherche à vérifier la présence.
-     *
-     * @return Un booléen
-     *
-     */
-    public boolean contientObjet(String nom){
-        boolean estpresent = false;
-        if (this.getPiece().getObjets().length != 0){
-            int i=0;
-            do{
-                if (this.getPiece().getObjets()[i].getNom().equals(nom)){
-                    estpresent = true;
-                }
-                i++;
-            }while(!estpresent && i<this.getPiece().getObjets().length);
-        }
-        return estpresent;
-    }
-
 
     /**
      * Cette fonction retire l'objet de nom 'nom' du stuff du vivant. Elle diminue également la taille du tableau stuff d'une case. Elle retourne enfin l'objet en question.
@@ -138,25 +115,8 @@ public class Vivant extends Entite{
      *
      */
     public Objet retirer(String nom){
-        Objet obj = null;
-        if (stuff.length != 0){
-          Objet[] tempObjets = new Objet[stuff.length-1];
-          if (contientObjet(nom)){
-              boolean estpresent = false;
-              int i=0;
-              do {
-                  if(stuff[i].getNom().equals(nom)){
-                      estpresent=true;
-                      i++;
-                  }
-              }while (!estpresent);
-
-              obj = stuff[i-1];
-              System.arraycopy(stuff,0,tempObjets,0,i);
-              System.arraycopy(stuff,i+1,tempObjets,i,stuff.length-i-1);
-          }
-          stuff = tempObjets;
-        }
+        Objet obj=this.stuff.get(nom);
+        this.stuff.remove(nom);
         return obj;
     }
 
@@ -175,9 +135,6 @@ public class Vivant extends Entite{
         }
         Objet obj = retirer(nomObj);
         this.getPiece().deposer(obj);
-        //stuff = Arrays.copyOf(stuff, stuff.length+1);
-        //stuff[stuff.length-1]= obj;
-        //Objet temp = retirer(obj.getNom());
     }
 
     public void deposer(Objet obj) throws ObjetNonPossedeParLeVivantException{
@@ -208,19 +165,7 @@ public class Vivant extends Entite{
      *
      */
     public Objet getObjet(String nomObjet){
-        int i=0;
-        boolean estPresent = false;
-        Objet obj = null;
-        if(stuff.length !=0){
-          do{
-              if (stuff[i].getNom().equals(nomObjet)) {
-                  obj = stuff[i];
-                  estPresent = true;
-              }
-              i++;
-          }while (i<stuff.length && !estPresent );
-        }
-        return obj;
+        return this.stuff.get(nomObjet);
     }
 
     /*public boolean possede(Objet obj){
@@ -247,12 +192,7 @@ public class Vivant extends Entite{
      *
      */
     public boolean possede(Objet obj){
-      for(int i=0;i<this.stuff.length;i++){
-        if (stuff[i]==obj){
-          return true;
-        }
-      }
-      return false;
+      return this.stuff.containsKey(obj.getNom());
     }
 
     /**
@@ -292,14 +232,21 @@ public class Vivant extends Entite{
      *
      */
     public String toString(){
-        String str="";
-        str = str+"Nom: "+getNom()+"\n";
-        str = str+"Monde: "+getMonde().getNom()+"\n";
-        str = str+"PV: "+getPointVie()+"\n";
-        str = str+"PF: "+getPointForce()+"\n";
-        for (int i =0;i<stuff.length;i++){
-          str = str+" "+stuff[i].getNom();
+        StringBuilder laChaine = new StringBuilder("");
+        laChaine.append(this.getNom());
+        laChaine.append("\n");
+        laChaine.append(this.getMonde());
+        laChaine.append("\n");
+        laChaine.append(this.getPiece());
+        laChaine.append("\n");
+        laChaine.append(this.getPointVie());
+        laChaine.append("\n");
+        laChaine.append(this.getPointForce());
+        laChaine.append("\n Entités: \n");
+        for(Objet o : this.stuff.values()){
+            laChaine.append(String.format(" \t - %s \n",o.getNom()));
         }
-        return str;
+        laChaine.append("\n");
+        return laChaine.toString();
     }
 }

@@ -1,5 +1,6 @@
 package fr.insarouen.asi.prog.asiaventure.materiel.structure;
 
+import java.util.HashMap;
 import fr.insarouen.asi.prog.asiaventure.materiel.Entite;
 import fr.insarouen.asi.prog.asiaventure.materiel.structure.ElementStructurel;
 import fr.insarouen.asi.prog.asiaventure.materiel.vivants.Vivant;
@@ -19,12 +20,12 @@ import fr.insarouen.asi.prog.asiaventure.materiel.structure.VivantAbsentDeLaPiec
  * @see ElementStructurel
  *
  * @author Tom / Constantin
- * @version 1.0
+ * @version 2.0
  */
 public class Piece extends ElementStructurel implements java.io.Serializable {
 
-    private Objet[] objets= new Objet[0];
-    private Vivant[] vivants= new Vivant[0];
+    private HashMap <String,Objet> objets= new HashMap<>();//HashMap
+    private HashMap <String,Vivant> vivants= new HashMap<>();//HashMap
 
     /**
      * Lors de la construction d'une pièce, le constructeur de la classe ElementStructurel est appelé avec le nom de la pièce et le monde associé.
@@ -48,8 +49,7 @@ public class Piece extends ElementStructurel implements java.io.Serializable {
      *
      */
     public void deposer(Objet obj){
-        objets = Arrays.copyOf(objets, objets.length+1);
-        objets[objets.length-1]= obj;
+        this.objets.put(obj.getNom(),obj);
     }
 
     /**
@@ -69,32 +69,17 @@ public class Piece extends ElementStructurel implements java.io.Serializable {
      */
     public Objet retirer(String nom) throws ObjetAbsentDeLaPieceException,
                      ObjetNonDeplacableException{
-        Objet obj = null;
-        boolean estpresent = false;
-        int i=0;
-        Objet[] tempObjets = new Objet[objets.length-1];
-        if (objets.length !=0){
-          if (contientObjet(nom)){
-              do {
-                  if(objets[i].getNom().equals(nom)){
-                      estpresent=true;
-                  }
-                  i++;
-              }while (!estpresent);
-            }
-          if(!estpresent) {
+          if(!(this.objets.containsKey(nom))) {
             throw new ObjetAbsentDeLaPieceException("L'objet "+nom+" à retirer n'est pas dans la pièce "+this.getNom()+".");
           }
-              obj = objets[i-1];
-          if(!obj.estDeplacable()){
+          if(!objets.get(nom).estDeplacable()){
             throw new ObjetNonDeplacableException("L'objet "+nom+" n'est pas déplacable.");
           }
-              System.arraycopy(objets,0,tempObjets,0,i-1);
-              System.arraycopy(objets,i,tempObjets,i-1,objets.length-i);
-          }
-          objets = tempObjets;
+          Objet obj=this.objets.get(nom);
+          this.objets.remove(nom);
           return obj;
     }
+
 
     /**
      * Il s'agit de la fonction retirer sur un objet mais avec l'objet en entrée et non son nom.
@@ -124,17 +109,7 @@ public class Piece extends ElementStructurel implements java.io.Serializable {
      *
      */
     public boolean contientObjet(String nom){
-        boolean estpresent = false;
-        if (objets.length != 0){
-            int i=0;
-            do{
-                if (objets[i].getNom().equals(nom)){
-                    estpresent = true;
-                }
-                i++;
-            }while(!estpresent && i<objets.length);
-        }
-        return estpresent;
+        return this.objets.containsKey(nom);
     }
 
     /**
@@ -155,16 +130,19 @@ public class Piece extends ElementStructurel implements java.io.Serializable {
      *
      */
     public String toString(){
-        String str="";
-        str = str+getNom()+"\n";
-        str = str+getMonde().getNom()+"\n";
-        for (int i =0;i<objets.length;i++){
-          str = str+" "+objets[i].getNom();
+        StringBuilder laChaine = new StringBuilder("");
+        laChaine.append(this.getNom());
+        laChaine.append("\n Objets: \n");
+        for(Objet o : this.objets.values()){
+            laChaine.append(String.format(" \t - %s \n",o.getNom()));
         }
-        for (int i =0;i<vivants.length;i++){
-          str = str+" "+vivants[i].getNom();
+        laChaine.append("\n");
+        laChaine.append("\n Vivants: \n");
+        for(Vivant v : this.vivants.values()){
+            laChaine.append(String.format(" \t - %s \n",v.getNom()));
         }
-        return str;
+        laChaine.append("\n");
+        return laChaine.toString();
     }
 
     /**
@@ -175,8 +153,7 @@ public class Piece extends ElementStructurel implements java.io.Serializable {
      *
      */
     public void entrer(Vivant vivant){
-        vivants = Arrays.copyOf(vivants, vivants.length+1);
-        vivants[vivants.length-1]= vivant;
+        this.vivants.put(vivant.getNom(),vivant);
     }
 
     /**
@@ -209,27 +186,11 @@ public class Piece extends ElementStructurel implements java.io.Serializable {
      *
      */
     public Vivant sortir(String nomVivant) throws VivantAbsentDeLaPieceException{
-        Vivant vivant = null;
-        Vivant[] tmpvivants = new Vivant[vivants.length-1];
-        if (contientVivant(nomVivant)){
-            boolean estpresent = false;
-            int i=0;
-            do {
-                if(vivants[i].getNom().equals(nomVivant)){
-                    estpresent=true;
-                    i++;
-                }
-            }while (!estpresent);
-
-            if(!estpresent) {
+            if(!(this.vivants.containsKey(nomVivant))) {
               throw new VivantAbsentDeLaPieceException("Le vivant "+nomVivant+" n'est pas dans la pièce "+this.getNom()+".");
             }
-
-            vivant = vivants[i-1];
-            System.arraycopy(vivants,0,tmpvivants,0,i);
-            System.arraycopy(objets,i+1,tmpvivants,i,vivants.length-i-1);
-        }
-        vivants = tmpvivants;
+            Vivant vivant = this.vivants.get(nomVivant);
+            this.vivants.remove(nomVivant);
         return vivant;
     }
 
@@ -252,17 +213,7 @@ public class Piece extends ElementStructurel implements java.io.Serializable {
      *
      */
     public boolean contientVivant(String nomVivant){
-        boolean estpresent = false;
-        if (vivants.length != 0){
-            int i=0;
-            do{
-                if (vivants[i].getNom().equals(nomVivant)){
-                    estpresent = true;
-                }
-                i++;
-            }while(!estpresent && i<vivants.length);
-        }
-        return estpresent;
+        return this.vivants.containsKey(nomVivant);
     }
 
     /**
@@ -271,7 +222,7 @@ public class Piece extends ElementStructurel implements java.io.Serializable {
      * @return Le tableau objets de la pièce.
      *
      */
-    public Objet[] getObjets(){
+    public HashMap<String,Objet> getObjets(){
       return objets;
     }
 }

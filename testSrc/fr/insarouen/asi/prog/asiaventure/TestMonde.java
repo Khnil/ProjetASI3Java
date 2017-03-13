@@ -33,6 +33,7 @@ public class TestMonde {
     @Test(expected=NomDEntiteDejaUtiliseDansLeMondeException.class)
     public void testAjouterDeuxFois() throws NomDEntiteDejaUtiliseDansLeMondeException,EntiteDejaDansUnAutreMondeException{
         Entite entite1 = new Entite("e1",monde){};
-        Entite entite2 = new Entite("e1",monde){};
+        monde.ajouter(entite1);
+        //monde.ajouter(entite1);
     }
 }

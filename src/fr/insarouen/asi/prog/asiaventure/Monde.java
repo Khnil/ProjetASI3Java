@@ -1,5 +1,6 @@
 package fr.insarouen.asi.prog.asiaventure;
 
+import java.util.HashMap;
 import java.io.Serializable;
 import java.lang.String;
 import java.util.Arrays;
@@ -18,7 +19,7 @@ import fr.insarouen.asi.prog.asiaventure.EntiteDejaDansUnAutreMondeException;
  * @see Entite
  *
  * @author Tom / Constantin
- * @version 1.0
+ * @version 2.0
  */
 public class Monde implements Serializable{
     /**
@@ -28,7 +29,7 @@ public class Monde implements Serializable{
   /**
    * Une map  (String,Entite) initialisée à nulle contenant les Entite du monde.
    */
-  private Entite[] entites= new Entite[0];
+  private HashMap<String,Entite> entites; //HashMap
 
   /**
    * Constructeur Monde <br>
@@ -39,6 +40,7 @@ public class Monde implements Serializable{
    */
     public Monde(String nomDuMonde){
       this.nom = nomDuMonde;
+      entites = new HashMap<>();
     }
 
     /**
@@ -55,16 +57,13 @@ public class Monde implements Serializable{
      */
     public void ajouter(Entite entite)throws NomDEntiteDejaUtiliseDansLeMondeException,
                 EntiteDejaDansUnAutreMondeException{
-      for(int i=0;i<entites.length;i++){
-          if(entites[i].getNom() == entite.getNom()){
+          if(this.getEntite(entite.getNom())!=null){
               throw new NomDEntiteDejaUtiliseDansLeMondeException("Cette entite existe déjà dans ce monde.");
           }
-      }
       if(!(this.nom.equals(entite.getMonde().getNom()))){
         throw new EntiteDejaDansUnAutreMondeException("Cette entite est déjà présente dans un autre monde.");
       }
-      entites = Arrays.copyOf(entites, entites.length+1);
-      entites[entites.length-1]= entite;
+      this.entites.put(entite.getNom(),entite);
     }
 
     /**
@@ -77,16 +76,7 @@ public class Monde implements Serializable{
      * @return L'entite correspondante si présente, null sinon
      */
     public Entite getEntite(String nomEntite){
-     boolean trouve = false;
-     int i=0;
-     Entite entiteCherchee = null;
-      while(!trouve && i<entites.length){
-        if(entites[i].getNom()==nomEntite){
-          trouve = true;
-          entiteCherchee=this.entites[i];
-        }else i++;
-      }
-      return entiteCherchee;
+      return entites.get(nomEntite);
     }
 
     /**
@@ -105,10 +95,13 @@ public class Monde implements Serializable{
      * @return La cdc
      */
     public String toString(){
-      String str=nom+"\n";
-      for (int i =0;i<entites.length;i++){
-        str = str+" "+entites[i].getNom();
+      StringBuilder laChaine = new StringBuilder("");
+      laChaine.append(this.getNom());
+      laChaine.append("\n Entités: \n");
+      for(Entite e : this.entites.values()){
+          laChaine.append(String.format(" \t - %s \n",e.getNom()));
       }
-      return str;
+      laChaine.append("\n");
+      return laChaine.toString();
     }
 }
