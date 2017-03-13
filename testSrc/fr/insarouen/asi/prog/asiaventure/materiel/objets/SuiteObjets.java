@@ -1,12 +1,13 @@
-package fr.insarouen.asi.prog.asiaventure.materiel.structure;
+package fr.insarouen.asi.prog.asiaventure.materiel.objets;
+
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
 @SuiteClasses({
-    TestElementStructurel.class,
-    TestPiece.class
+    TestObjet.class,
+    TestPiedDeBiche.class
 })
 
-public class suiteStructure{}
+public class SuiteObjets{}

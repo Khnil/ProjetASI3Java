@@ -9,4 +9,4 @@ import org.junit.runners.Suite.SuiteClasses;
     TestVivant.class
 })
 
-public class suiteVivants{}
+public class SuiteVivants{}

@@ -72,11 +72,11 @@ public class Piece extends ElementStructurel implements java.io.Serializable {
           if(!(this.objets.containsKey(nom))) {
             throw new ObjetAbsentDeLaPieceException("L'objet "+nom+" à retirer n'est pas dans la pièce "+this.getNom()+".");
           }
-          if(!objets.get(nom).estDeplacable()){
+          Objet obj = objets.remove(nom);
+          if(!obj.estDeplacable()){
+             deposer(obj);
             throw new ObjetNonDeplacableException("L'objet "+nom+" n'est pas déplacable.");
           }
-          Objet obj=this.objets.get(nom);
-          this.objets.remove(nom);
           return obj;
     }
 

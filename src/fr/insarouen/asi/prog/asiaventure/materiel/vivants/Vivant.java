@@ -62,10 +62,10 @@ public class Vivant extends Entite{
         this.PV = pointVie;
         this.PF = pointForce;
         this.piece = piece;
-        for(int i=0;i<= objets.length;i++){
+        for(int i=0;i< objets.length;i++){
             this.stuff.put(objets[i].getNom(),objets[i]);
         }
-        this.piece.entrer(this);
+        this.getPiece().entrer(this);
         }
 
     /**
@@ -103,23 +103,6 @@ public class Vivant extends Entite{
         prendre(obj.getNom());
     }
 
-
-    /**
-     * Cette fonction retire l'objet de nom 'nom' du stuff du vivant. Elle diminue également la taille du tableau stuff d'une case. Elle retourne enfin l'objet en question.
-     * Pour ce faire elle vérifie la présence de l'objet au préalable dans sonj stuff avant de le supprimer du tableau. Si celui ci n'est pas dans le stuff la fonction renvoie null.
-     *
-     * @param nom
-     *      Le nom de l'objet que l'on cherche à retirer.
-     *
-     * @return L'objet dont le nom est 'nom' ou null si celui ci n'est pas présent.
-     *
-     */
-    public Objet retirer(String nom){
-        Objet obj=this.stuff.get(nom);
-        this.stuff.remove(nom);
-        return obj;
-    }
-
     /**
      * Cette méthode retire l'objet de nom nomObj du stuff du vivant. Si celui ci n'a pas l'objet alors il ne peut être retiré et la méthode renvoie un exception. De même si l'objet est déjà présent dans la pièce la fonction ne fait rien.
      *
@@ -133,7 +116,7 @@ public class Vivant extends Entite{
         if (!possede(getObjet(nomObj))){
             throw new ObjetNonPossedeParLeVivantException("L'objet "+nomObj+" à deposer n'est pas dans le stuff de "+this.getNom()+".");
         }
-        Objet obj = retirer(nomObj);
+        Objet obj = this.stuff.remove(nomObj);
         this.getPiece().deposer(obj);
     }
 
@@ -192,7 +175,7 @@ public class Vivant extends Entite{
      *
      */
     public boolean possede(Objet obj){
-      return this.stuff.containsKey(obj.getNom());
+      return this.stuff.containsValue(obj);
     }
 
     /**

@@ -1,4 +1,4 @@
-package fr.insarouen.asi.prog.asiaventure.materiel.objets;
+package fr.insarouen.asi.prog.asiaventure.materiel;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
@@ -6,8 +6,7 @@ import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
 @SuiteClasses({
-    TestObjet.class,
-    TestPiedDeBiche.class
+    TestEntite.class
 })
 
-public class suiteObjets{}
+public class SuiteElements{}
