@@ -230,7 +230,7 @@ public class Vivant extends Entite{
         Porte porte = this.piece.getPorte(nomPorte);
         if (porte == null)
         throw new PorteInexistanteDansLaPieceException("La porte "+nomPorte+" n'existe pas.");
-        if (porte.getEtat().equals(Etat.VEROUILLE) || porte.getEtat().equals(Etat.FERME))
+        if (porte.getEtat().equals(Etat.VERROUILLE) || porte.getEtat().equals(Etat.FERME))
         throw new PorteFermeException("La porte "+nomPorte+" est vérouillée ou fermée.");
 
         this.piece = porte.getPieceAutreCote(this.piece);

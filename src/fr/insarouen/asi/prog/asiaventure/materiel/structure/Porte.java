@@ -51,8 +51,14 @@ public class Porte extends ElementStructurel implements Activable{
     public void activerAvec(Objet obj) throws ActivationImpossibleAvecObjetException, ActivationImpossibleException{
         if (!activableAvec(obj))
             throw new ActivationImpossibleAvecObjetException("L'objet "+obj.getNom()+" ne permet pas d'ouvrir la porte "+this.getNom());
-            //à completer
-            //
+        if (obj instanceof PiedDeBiche && ((this.getEtat()==Etat.FERME) ||(this.getEtat()==Etat.VERROUILLE))){
+          this.etat = Etat.CASSE;
+         //ouvrir serrure
+        }
+        if (this.getEtat().equals(Etat.VERROUILLE))
+            this.etat = Etat.OUVERT;
+          else
+            this.etat = Etat.VERROUILLE;
     }
 
     public Etat getEtat(){

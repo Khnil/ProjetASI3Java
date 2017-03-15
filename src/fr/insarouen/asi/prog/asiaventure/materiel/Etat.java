@@ -7,4 +7,4 @@ package fr.insarouen.asi.prog.asiaventure.materiel;
   *
   * @version 1.0
   */
-public enum Etat{FERME,OUVERT,CASSE,VEROUILLE,DEVEROUILLE};
+public enum Etat{FERME,OUVERT,CASSE,VERROUILLE,DEVERROUILLE};
