@@ -236,4 +236,18 @@ public class Piece extends ElementStructurel implements java.io.Serializable {
     protected void addPorte(Porte porte){
       this.portes.put(porte.getNom(),porte);
     }
+
+    public boolean aLaPorte(String nomPorte){
+        return this.portes.containsKey(nomPorte);
+    }
+
+    public boolean aLaPorte(Porte porte){
+        return aLaPorte(porte.getNom());
+    }
+
+    public Porte getPorte(String nomPorte){
+        return this.portes.get(nomPorte);
+    }
+
+
 }

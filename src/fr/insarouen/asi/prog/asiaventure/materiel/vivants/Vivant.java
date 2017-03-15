@@ -1,18 +1,24 @@
 package fr.insarouen.asi.prog.asiaventure.materiel.vivants;
 
 import java.util.HashMap;
+import java.util.Arrays;
 import java.lang.Object;
+import java.lang.String;
+
+import fr.insarouen.asi.prog.asiaventure.NomDEntiteDejaUtiliseDansLeMondeException;
+import fr.insarouen.asi.prog.asiaventure.Monde;
+import fr.insarouen.asi.prog.asiaventure.materiel.Etat;
+import fr.insarouen.asi.prog.asiaventure.materiel.ActivationException;
+import fr.insarouen.asi.prog.asiaventure.materiel.Activable;
 import fr.insarouen.asi.prog.asiaventure.materiel.Entite;
 import fr.insarouen.asi.prog.asiaventure.materiel.objets.Objet;
-import fr.insarouen.asi.prog.asiaventure.Monde;
-import fr.insarouen.asi.prog.asiaventure.materiel.structure.Piece;
-import fr.insarouen.asi.prog.asiaventure.materiel.vivants.Vivant;
-import java.lang.String;
-import java.util.Arrays;
-import fr.insarouen.asi.prog.asiaventure.NomDEntiteDejaUtiliseDansLeMondeException;
-import fr.insarouen.asi.prog.asiaventure.materiel.structure.ObjetAbsentDeLaPieceException;
 import fr.insarouen.asi.prog.asiaventure.materiel.objets.ObjetNonDeplacableException;
-
+import fr.insarouen.asi.prog.asiaventure.materiel.structure.Piece;
+import fr.insarouen.asi.prog.asiaventure.materiel.structure.Porte;
+import fr.insarouen.asi.prog.asiaventure.materiel.structure.ObjetAbsentDeLaPieceException;
+import fr.insarouen.asi.prog.asiaventure.materiel.structure.PorteFermeException;
+import fr.insarouen.asi.prog.asiaventure.materiel.structure.PorteInexistanteDansLaPieceException;
+import fr.insarouen.asi.prog.asiaventure.materiel.vivants.Vivant;
 
 /**
  * Classe qui permet de décrire un vivant.<br>
@@ -206,6 +212,28 @@ public class Vivant extends Entite{
      */
     public boolean estMort(){
         return (!(PV > 0));
+    }
+
+    public void activerActivable(Activable activable) throws ActivationException{
+        activable.activer();
+    }
+
+    public void activerActivableAvecObjet(Activable activable, Objet objet) throws ActivationException{
+        activable.activerAvec(objet);
+    }
+
+    public void franchir(Porte porte) throws PorteFermeException, PorteInexistanteDansLaPieceException{
+        franchir(porte.getNom());
+    }
+
+    public void franchir(String nomPorte) throws PorteFermeException, PorteInexistanteDansLaPieceException{
+        Porte porte = this.piece.getPorte(nomPorte);
+        if (porte == null)
+        throw new PorteInexistanteDansLaPieceException("La porte "+nomPorte+" n'existe pas.");
+        if (porte.getEtat().equals(Etat.VEROUILLE) || porte.getEtat().equals(Etat.FERME))
+        throw new PorteFermeException("La porte "+nomPorte+" est vérouillée ou fermée.");
+
+        this.piece = porte.getPieceAutreCote(this.piece);
     }
 
     /**

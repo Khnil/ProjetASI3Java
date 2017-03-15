@@ -42,16 +42,43 @@ public class Porte extends ElementStructurel implements Activable{
     public void activer() throws ActivationImpossibleException{
         if (!((this.getEtat().equals(Etat.FERME)) || (this.getEtat().equals(Etat.OUVERT))))
             throw new ActivationImpossibleException("Porte impossible à activer.");
-        //a completer
+        if (this.etat.equals(Etat.FERME))
+            this.etat = Etat.OUVERT;
+        if (this.etat.equals(Etat.OUVERT))
+            this.etat = Etat.FERME;
     }
 
     public void activerAvec(Objet obj) throws ActivationImpossibleAvecObjetException, ActivationImpossibleException{
         if (!activableAvec(obj))
             throw new ActivationImpossibleAvecObjetException("L'objet "+obj.getNom()+" ne permet pas d'ouvrir la porte "+this.getNom());
-
+            //à completer
+            //
     }
 
     public Etat getEtat(){
         return this.etat;
+    }
+
+    public Piece getPieceAutreCote(Piece piece){
+        if (piece.equals(pieceA))
+          return pieceB;
+        else
+          return pieceA;
+    }
+
+    public String toString(){
+      StringBuilder laChaine = new StringBuilder("");
+      laChaine.append("\n Nom: ");
+      laChaine.append(this.getNom());
+      laChaine.append("\n Monde: ");
+      laChaine.append(this.getMonde());
+      laChaine.append("\n Piece A: ");
+      laChaine.append(this.pieceA.getNom());
+      laChaine.append("\n Piece B: ");
+      laChaine.append(this.pieceB.getNom());
+      laChaine.append("\n Piece Etat: ");
+      laChaine.append(getEtat());
+      laChaine.append("\n");
+      return laChaine.toString();
     }
 }
