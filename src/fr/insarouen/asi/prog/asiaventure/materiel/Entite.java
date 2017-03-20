@@ -28,6 +28,12 @@ public abstract class Entite{
       *Le monde dans lequel est l'entite.
       */
     private Monde monde;
+
+    /**
+      *Maximum de nom générés aleatoirement
+      */
+    public static final int MAXIMUMNOMALEATOIRE = 10000;
+
     /**
       * constructeur Entite <br>
       * A la constructon de l'entite, le nom de celle ci ainsi que le monde dans lequel elle est présente sont fixés.

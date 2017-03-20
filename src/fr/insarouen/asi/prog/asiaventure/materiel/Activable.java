@@ -15,5 +15,5 @@ public interface Activable {
 
     void activer() throws ActivationException;
 
-    void activerAvec(Objet obj);
+    void activerAvec(Objet obj) throws ActivationImpossibleAvecObjetException,ActivationImpossibleException;
 }

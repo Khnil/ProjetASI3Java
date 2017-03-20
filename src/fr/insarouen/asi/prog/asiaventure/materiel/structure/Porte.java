@@ -59,8 +59,9 @@ public class Porte extends ElementStructurel implements Activable{
     public boolean activableAvec(Objet obj){
         if (this.getEtat().equals(Etat.CASSE))
             return false;
-        if (obj instanceof PiedDeBiche)
-            return true;
+        else if (obj instanceof PiedDeBiche)
+          return true;
+                else return false;
     }
 
     /**
@@ -91,7 +92,7 @@ public class Porte extends ElementStructurel implements Activable{
      *        retourne l'erreur d'une entité inctivable.
      *
      */
-    public void activerAvec(Objet obj) throws ActivationImpossibleAvecObjetException, ActivationImpossibleException{
+    public void activerAvec(Objet obj) throws ActivationImpossibleAvecObjetException{
         if (!activableAvec(obj))
             throw new ActivationImpossibleAvecObjetException("L'objet "+obj.getNom()+" ne permet pas d'ouvrir la porte "+this.getNom());
         if (obj instanceof PiedDeBiche && ((this.getEtat()==Etat.FERME) ||(this.getEtat()==Etat.VERROUILLE))){
