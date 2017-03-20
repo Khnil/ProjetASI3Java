@@ -260,4 +260,8 @@ public class Vivant extends Entite{
         laChaine.append("\n");
         return laChaine.toString();
     }
+
+    public void setPointsDeVie(int pointVie){
+        this.PV = pointVie;
+    }
 }

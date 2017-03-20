@@ -1,12 +1,11 @@
 package fr.insarouen.asi.prog.asiaventure.materiel.structure;
 
-import java.util.HashMap;
+import java.util.*;
 import fr.insarouen.asi.prog.asiaventure.materiel.Entite;
 import fr.insarouen.asi.prog.asiaventure.materiel.structure.ElementStructurel;
 import fr.insarouen.asi.prog.asiaventure.materiel.vivants.Vivant;
 import java.lang.Object;
 import fr.insarouen.asi.prog.asiaventure.materiel.objets.Objet;
-import java.util.Arrays;
 import fr.insarouen.asi.prog.asiaventure.Monde;
 import fr.insarouen.asi.prog.asiaventure.NomDEntiteDejaUtiliseDansLeMondeException;
 import fr.insarouen.asi.prog.asiaventure.materiel.objets.ObjetNonDeplacableException;
@@ -26,7 +25,7 @@ public class Piece extends ElementStructurel implements java.io.Serializable {
 
     private HashMap <String,Objet> objets= new HashMap<String,Objet>();//HashMap
     private HashMap <String,Vivant> vivants= new HashMap<String,Vivant>();//HashMap
-    private HashMap<String,Porte> portes= new HashMap<String,Porte>();
+    private Map<String,Porte> portes;
 
     /**
      * Lors de la construction d'une pièce, le constructeur de la classe ElementStructurel est appelé avec le nom de la pièce et le monde associé.
@@ -40,6 +39,7 @@ public class Piece extends ElementStructurel implements java.io.Serializable {
      */
     public Piece(String nom, Monde monde) throws NomDEntiteDejaUtiliseDansLeMondeException{
         super(nom, monde);
+        portes= new HashMap<String,Porte>();
     }
 
     /**
@@ -249,5 +249,8 @@ public class Piece extends ElementStructurel implements java.io.Serializable {
         return this.portes.get(nomPorte);
     }
 
+    public Map<String,Porte> getPortes(){
+        return this.portes;
+    }
 
 }

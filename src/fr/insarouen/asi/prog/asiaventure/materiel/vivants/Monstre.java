@@ -1,9 +1,11 @@
 package fr.insarouen.asi.prog.asiaventure.materiel.vivants;
 
+import java.util.*;
 import fr.insarouen.asi.prog.asiaventure.materiel.Executable;
 import fr.insarouen.asi.prog.asiaventure.NomDEntiteDejaUtiliseDansLeMondeException;
 import fr.insarouen.asi.prog.asiaventure.Monde;
 import fr.insarouen.asi.prog.asiaventure.materiel.structure.Piece;
+import fr.insarouen.asi.prog.asiaventure.materiel.structure.Porte;
 
 public class Monstre extends Vivant implements Executable{
   /**
@@ -25,7 +27,17 @@ public class Monstre extends Vivant implements Executable{
    }
 
    public void executer() throws java.lang.Throwable{
+       if(this.estMort())
+         throw new Throwable(String.format("Le monstre %s est mort.",this.getNom()));
 
+       Map<String,Porte> lesPortes;
+       Porte porteAFranchir;
+       Boolean aFranchiPorte = false;
+       lesPortes = getPiece().getPortes();
+       do{
+
+
+       }while(!aFranchiPorte);
    }
-   
+
 }
