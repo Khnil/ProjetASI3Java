@@ -7,6 +7,18 @@ import fr.insarouen.asi.prog.asiaventure.Monde;
 import fr.insarouen.asi.prog.asiaventure.materiel.structure.Piece;
 import fr.insarouen.asi.prog.asiaventure.materiel.structure.Porte;
 
+/**
+ * Classe qui permet de décrire un monstre.Celui ci est un vivant apparaissant sans stuff. <br>
+ * Cette classe hérite de la classe Vivant. elle possède donc ses caractéristiques.
+ * Cette classe implémente l'interface Executable.
+ *
+ * @see Vivant
+ * @see Executable
+ *
+ * @author Tom / Constantin
+ * @version 1.0
+ */
+
 public class Monstre extends Vivant implements Executable{
   /**
    * Constructeur Monstre.<br>
