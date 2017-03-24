@@ -58,6 +58,18 @@ public class Monstre extends Vivant implements Executable{
          for(Objet obj: tempObjets.values()){
            prendre(obj);
          }  //ça compile, est ce que ça marche?
+         Porte porteAuPif;
+         int nbPortesDispo = this.getPiece().getPortes().size();
+         int porteAPrendre = (int)Math.random()*nbPortesDispo;
+         Porte[] tableauPortes= new Porte[nbPortesDispo];
+         int i=0;
+         for (Porte porte:this.getPiece().getPortes().values()){
+           tableauPortes[i]=porte;
+           i=i+1;
+         }
+         porteAuPif=tableauPortes[porteAPrendre];
+         this.getPiece().sortir(this);
+         porteAuPif.getPieceAutreCote(this.getPiece()).entrer(this);
        }while(!aFranchiPorte);
    }
 
