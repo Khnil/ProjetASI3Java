@@ -13,13 +13,13 @@ import fr.insarouen.asi.prog.asiaventure.materiel.structure.ObjetAbsentDeLaPiece
 import fr.insarouen.asi.prog.asiaventure.materiel.structure.VivantAbsentDeLaPieceException;
 
 /**
- * Classe qui permet de décrire une pièce.Celle ci est composée d'une liste d'objets et d'une liste de vivants présents à l'intérieur. <br>
+ * Classe qui permet de décrire une pièce.Celle ci est composée d'une liste d'objets, d'une liste de vivants présents à l'intérieur et d'une liste de portes.. <br>
  * Cette classe hérite de la classe ElementStructurel. elle possède donc un nom et un monde.
  *
  * @see ElementStructurel
  *
  * @author Tom / Constantin
- * @version 2.0
+ * @version 2.1
  */
 public class Piece extends ElementStructurel implements java.io.Serializable {
 
@@ -237,18 +237,47 @@ public class Piece extends ElementStructurel implements java.io.Serializable {
       this.portes.put(porte.getNom(),porte);
     }
 
+    /**
+     * Cette méthode vérifie si une porte est bien présente dans la pièce.
+     *
+     * @param nomPorte
+     *        porte donc on vérifie la présence.
+     *
+     * @return Un booléen informant si la porte est bien présente dans la pièce.
+     */
     public boolean aLaPorte(String nomPorte){
         return this.portes.containsKey(nomPorte);
     }
 
+    /**
+     * Cette méthode vérifie si une porte est bien présente dans la pièce.
+     *
+     * @param porte
+     *        porte donc on vérifie la présence.
+     *
+     * @return Un booléen informant si la porte est bien présente dans la pièce.
+     */
     public boolean aLaPorte(Porte porte){
         return aLaPorte(porte.getNom());
     }
 
+    /**
+     * Cette méthode retourne la porte de la pièce qu'on cherche.
+     *
+     * @param nomPorte
+     *         nom de la porte qu'on cherche à retourner.
+     *
+     * @return La porte dont on a donné le nom.
+     */
     public Porte getPorte(String nomPorte){
         return this.portes.get(nomPorte);
     }
 
+    /**
+     * Cette méthode retourne l'ensemble des portes de la pièce.
+     *
+     * @return Une map de portes.
+     */
     public Map<String,Porte> getPortes(){
         return this.portes;
     }

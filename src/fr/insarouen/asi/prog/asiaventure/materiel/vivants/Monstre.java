@@ -6,6 +6,7 @@ import fr.insarouen.asi.prog.asiaventure.NomDEntiteDejaUtiliseDansLeMondeExcepti
 import fr.insarouen.asi.prog.asiaventure.Monde;
 import fr.insarouen.asi.prog.asiaventure.materiel.structure.Piece;
 import fr.insarouen.asi.prog.asiaventure.materiel.structure.Porte;
+import fr.insarouen.asi.prog.asiaventure.materiel.objets.Objet;
 
 /**
  * Classe qui permet de décrire un monstre.Celui ci est un vivant apparaissant sans stuff. <br>
@@ -47,8 +48,16 @@ public class Monstre extends Vivant implements Executable{
        Boolean aFranchiPorte = false;
        lesPortes = getPiece().getPortes();
        do{
-
-
+         HashMap<String,Objet> tempObjets=new HashMap<String,Objet>();
+         for(Objet obj: this.getPiece().getObjets().values()){
+           tempObjets.put(obj.getNom(),obj);
+         }
+         for(Objet obj: this.getObjets().values()){
+           deposer(obj);
+         }
+         for(Objet obj: tempObjets.values()){
+           prendre(obj);
+         }  //ça compile, est ce que ça marche?
        }while(!aFranchiPorte);
    }
 

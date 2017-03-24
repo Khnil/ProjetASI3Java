@@ -140,9 +140,9 @@ public class Vivant extends Entite{
         return this.piece;
     }
 
-    /*public java.util.HashMap<String,Objet> getObjets(){
-
-    }*/
+    public java.util.HashMap<String,Objet> getObjets(){
+        return this.stuff;
+    }
 
     /**
      * Cette fonction renvoie l'objet de nom 'nomObjet' présent dans le stuff du vivant.
