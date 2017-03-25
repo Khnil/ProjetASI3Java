@@ -39,6 +39,11 @@ public class Monstre extends Vivant implements Executable{
      super(nom,monde,pv,pf,piece);
    }
 
+   /**
+    * Cette méthode correspond à un tour d'action d'un monstre.Si le monstre n'est pas mort alors celui-ci va échanger tous les objets de son stuff avec tous les objets de la pièce dans laquelle il est, puis changer de pièce.
+    * La pièce dans laquelle il va est choisie au hasard parmi toutes les portes qu'il a à sa disposition dans la pièce où il est actuellement.
+    *
+    */
    public void executer() throws java.lang.Throwable{
        if(this.estMort())
          throw new Throwable(String.format("Le monstre %s est mort.",this.getNom()));

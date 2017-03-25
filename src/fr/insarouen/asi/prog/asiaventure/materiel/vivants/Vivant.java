@@ -214,18 +214,61 @@ public class Vivant extends Entite{
         return (!(PV > 0));
     }
 
+    /**
+     * Cette méthode permet au vivant d'activer un activable.
+     *
+     * @param activable
+     *      Le nom de l'objet que l'on cherche à activer.
+     *
+     * @throws ActivationException
+     *      Renvoie l'exception d'un objet qui n'est pas activable.
+     */
     public void activerActivable(Activable activable) throws ActivationException{
         activable.activer();
     }
 
+    /**
+     * Cette méthode permet au vivant d'activer un activable avec l'objet donné.
+     *
+     * @param activable
+     *      Le nom de l'objet que l'on cherche à activer.
+     * @param objet
+     *      Le nom de l'objet dont le vivant se sert pour activer. (exemple une clé ou un pied de biche)
+     *
+     * @throws ActivationException
+     *      Renvoie l'exception d'un objet qui n'est pas activable.
+     */
     public void activerActivableAvecObjet(Activable activable, Objet objet) throws ActivationException{
         activable.activerAvec(objet);
     }
 
+    /**
+     * Cette méthode permet au vivant de franchir une porte et ainsi de changer de pièce.
+     *
+     * @param porte
+     *      La porte que l'on cherche à franchir.
+     *
+     * @throws PorteFermeException
+     *      Renvoie l'exception d'une porte fermée et donc infranchissable.
+     * @throws PorteInexistanteDansLaPieceException
+     *      Renvoie l'exception d'une porte qui n'est pas dans la pièce et donc infranchissable pour le vivant.
+     */
     public void franchir(Porte porte) throws PorteFermeException, PorteInexistanteDansLaPieceException{
         franchir(porte.getNom());
     }
 
+    /**
+     * Cette méthode permet au vivant de franchir une porte et ainsi de changer de pièce. Pour ce faire on récupère la porte dans la pièce.
+     * on vérifie ensuite que la porte est bien présente et qu'elle est franchissable. on change ensuite la pièce du vivant.
+     *
+     * @param porte
+     *      Le nom de la porte que l'on cherche à franchir.
+     *
+     * @throws PorteFermeException
+     *      Renvoie l'exception d'une porte fermée et donc infranchissable.
+     * @throws PorteInexistanteDansLaPieceException
+     *      Renvoie l'exception d'une porte qui n'est pas dans la pièce et donc infranchissable pour le vivant.
+     */
     public void franchir(String nomPorte) throws PorteFermeException, PorteInexistanteDansLaPieceException{
         Porte porte = this.piece.getPorte(nomPorte);
         if (porte == null)
