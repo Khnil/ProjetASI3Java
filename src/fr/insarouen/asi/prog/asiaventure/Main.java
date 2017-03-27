@@ -37,17 +37,34 @@ public class Main{
     }
 
     private static void choix2(){
-
+        Reader fichier = new FileReader("./exsimulation1.txt");
+        simulateur = new Simulateur(fichier);
+        System.out.println(simulateur);
+        fichier.close();
+        System.out.println("Chargement du fichier description - OK. \n");
     }
 
 
     private static void choix3(){
-
+        FileOutputStream fichier = new FileOutputStream("./sauvegarde.txt");
+        ObjectOutputStream oos = new ObjectOutputStream(fichier);
+        if (simulateur = null) {
+            System.out.println("Pas de partie à sauvegarder.\n");
+        }
+        simulateur.enregistrer(oos)
+        System.out.println(simulateur);
+        fichier.close();
+        System.out.println("Sauvegarde de la partie - OK. \n");
     }
 
 
     private static void choix4(){
-
+        FileInputStream fichier = new FileInputStream("./sauvegarde.txt");
+        ObjectInputStream ois = new ObjectInputStream(fichier);
+        simulateur = new Simulateur(ois);
+        fichier.close();
+        System.out.println(simulateur);
+        System.out.println("Chargement de la partie - OK. \n");
     }
 
 }
