@@ -10,6 +10,7 @@ import fr.insarouen.asi.prog.asiaventure.materiel.objets.PiedDeBiche;
 import fr.insarouen.asi.prog.asiaventure.materiel.structure.ElementStructurel;
 import fr.insarouen.asi.prog.asiaventure.materiel.ActivationImpossibleException;
 import fr.insarouen.asi.prog.asiaventure.materiel.ActivationImpossibleAvecObjetException;
+import fr.insarouen.asi.prog.asiaventure.materiel.objets.serrurerie.Serrure;
 
 /**
  * Porte est une classe permettant de manipuler une porte entre deux pieces. Cette classe est composée de deux pièces et d'un état.
@@ -22,6 +23,7 @@ public class Porte extends ElementStructurel implements Activable{
     private Piece pieceA;
     private Piece pieceB;
     private Etat etat;
+    private Serrure serrure=null;
 
     /**
      * Lors de la construction d'une porte, le constructeur de la classe ElementStructurel est appelé avec le nom de la pièce et le monde associé.
@@ -47,6 +49,13 @@ public class Porte extends ElementStructurel implements Activable{
         this.etat = Etat.FERME;
     }
 
+    public Porte(String nom, Monde monde,Serrure serrure, Piece pieceA,Piece pieceB) throws NomDEntiteDejaUtiliseDansLeMondeException{
+        this(nom,monde,pieceA,pieceB);
+        this.serrure = serrure;
+        this.etat = Etat.VERROUILLE;
+
+    }
+
     /**
      * cette méthode retourne avec un booléen si la porte en question est ouvrable avec l'objet en paramètre. Si la porte est cassée alors elle n'est pas ouvrable. Si l'objet est un pied de biche alors la porte est ouvrable.
      *
@@ -59,9 +68,12 @@ public class Porte extends ElementStructurel implements Activable{
     public boolean activableAvec(Objet obj){
         if (this.getEtat().equals(Etat.CASSE))
             return false;
-        else if (obj instanceof PiedDeBiche)
+        if (obj instanceof PiedDeBiche)
           return true;
-                else return false;
+        if(this.serrure != null){
+            return this.serrure.activableAvec(obj);
+        }
+        return true;
     }
 
     /**
@@ -153,5 +165,9 @@ public class Porte extends ElementStructurel implements Activable{
       laChaine.append(getEtat());
       laChaine.append("\n");
       return laChaine.toString();
+    }
+
+    public Serrure getSerrure(){
+        return this.serrure;
     }
 }
