@@ -34,6 +34,7 @@ public class JoueurHumain extends Vivant implements Executable {
      */
      public JoueurHumain(String nom, Monde monde, int pv, int pf, Piece piece) throws NomDEntiteDejaUtiliseDansLeMondeException {
        super(nom,monde,pv,pf,piece);
+       ordreAFaire = null;
      }
 
      public void setOrdre(java.lang.String ordre){
