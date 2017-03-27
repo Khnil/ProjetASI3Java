@@ -1,14 +1,28 @@
 package fr.insarouen.asi.prog.asiaventure;
 import java.util.Scanner;
 import java.lang.System;
+import java.lang.String;
+import fr.insarouen.asi.prog.asiaventure.Simulateur;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.FileOutputStream;
+import java.io.FileInputStream;
+import java.io.FileReader;
+import java.io.Reader;
+import java.io.IOException;
+import fr.insarouen.asi.prog.asiaventure.NomDEntiteDejaUtiliseDansLeMondeException;
+import java.lang.ClassNotFoundException;
 
 public class Main{
+    private static Simulateur simulateur;
+
     public static void main(String[] args) throws Throwable{
         Scanner reponse = new Scanner(System.in);
-        int choix;
+        int choix=0;
         do {
             affichageMenu();
             choix = reponse.nextInt();
+            System.out.println(choix);
             choixMenu(choix);
         } while (choix!=5);
     }
@@ -22,21 +36,29 @@ public class Main{
         System.out.println("5/ Quitter");
     }
 
-    private static void choixMenu(int choix){
+    private static void choixMenu(int choix)throws Throwable{
         switch (choix) {
-            case 1: choix1();
-            case 2: choix2();
-            case 3: choix3();
-            case 4: choix4();
+            case 1: System.out.println("Jouer\n");
+                    choix1();
+                    break;
+            case 2: System.out.println("Charger un fichier de description\n");
+                    choix2();
+                    break;
+            case 3: System.out.println("Sauver la partie actuelle\n");
+                    choix3();
+                    break;
+            case 4: System.out.println("Charger une partie\n");
+                    choix4();
+                    break;
             case 5: break;
         }
     }
 
     private static void choix1(){
-
+        System.out.println("A finir\n");
     }
 
-    private static void choix2(){
+    private static void choix2()throws IOException,NomDEntiteDejaUtiliseDansLeMondeException{
         Reader fichier = new FileReader("./exsimulation1.txt");
         simulateur = new Simulateur(fichier);
         System.out.println(simulateur);
@@ -45,20 +67,20 @@ public class Main{
     }
 
 
-    private static void choix3(){
+    private static void choix3()throws IOException{
         FileOutputStream fichier = new FileOutputStream("./sauvegarde.txt");
         ObjectOutputStream oos = new ObjectOutputStream(fichier);
-        if (simulateur = null) {
+        if (simulateur == null) {
             System.out.println("Pas de partie à sauvegarder.\n");
         }
-        simulateur.enregistrer(oos)
+        simulateur.enregistrer(oos);
         System.out.println(simulateur);
         fichier.close();
         System.out.println("Sauvegarde de la partie - OK. \n");
     }
 
 
-    private static void choix4(){
+    private static void choix4()throws IOException,NomDEntiteDejaUtiliseDansLeMondeException,ClassNotFoundException{
         FileInputStream fichier = new FileInputStream("./sauvegarde.txt");
         ObjectInputStream ois = new ObjectInputStream(fichier);
         simulateur = new Simulateur(ois);
