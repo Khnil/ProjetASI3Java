@@ -16,6 +16,12 @@ import fr.insarouen.asi.prog.asiaventure.materiel.objets.serrurerie.Clef;
 import fr.insarouen.asi.prog.asiaventure.materiel.structure.Porte;
 import fr.insarouen.asi.prog.asiaventure.materiel.vivants.JoueurHumain;
 
+/**
+ * Classe Simulateur, celle ci comporte le monde présent et l'état du jeu. Elle sert nottament à mettre en place le jeu à l'aide de fichiers de sauvegarde.<br>
+ *
+ * @author Tom / Constantin
+ * @version 1.0
+ */
 public class Simulateur {
     private Monde monde;
     private EtatDuJeu jeu;

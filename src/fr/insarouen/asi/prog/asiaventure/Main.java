@@ -13,6 +13,13 @@ import java.io.IOException;
 import fr.insarouen.asi.prog.asiaventure.NomDEntiteDejaUtiliseDansLeMondeException;
 import java.lang.ClassNotFoundException;
 
+/**
+ * Classe Main.<br>
+ * Cette classe sert à lancer le jeu ASIAventure2K17deluxeEditionChristmasSpecial <br>
+ *
+ * @author Tom / Constantin
+ * @version 1.0
+ */
 public class Main{
     private static Simulateur simulateur;
 
