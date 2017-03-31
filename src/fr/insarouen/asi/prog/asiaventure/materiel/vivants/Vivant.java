@@ -126,6 +126,15 @@ public class Vivant extends Entite{
         this.getPiece().deposer(obj);
     }
 
+    /**
+     * Cette méthode retire l'objet obj du stuff du vivant. Si celui ci n'a pas l'objet alors il ne peut être retiré et la méthode renvoie un exception. De même si l'objet est déjà présent dans la pièce la fonction ne fait rien.
+     *
+     * @param obj
+     *      L'objet que l'on cherche à retirer.
+     *
+     * @throws ObjetNonPossedeParLeVivantException
+     *      Renvoie l'exception d'un objet qui n'est pas dans le stuff du vivant.
+     */
     public void deposer(Objet obj) throws ObjetNonPossedeParLeVivantException{
         deposer(obj.getNom());
     }
@@ -140,6 +149,12 @@ public class Vivant extends Entite{
         return this.piece;
     }
 
+    /**
+     * Cette méthode renvoie le stuff complet du vivant.
+     *
+     * @return Le stuff du vivant sous forme de HashMap d'objets.
+     *
+     */
     public java.util.HashMap<String,Objet> getObjets(){
         return this.stuff;
     }

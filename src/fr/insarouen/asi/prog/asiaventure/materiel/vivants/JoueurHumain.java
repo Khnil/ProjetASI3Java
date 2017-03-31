@@ -37,30 +37,94 @@ public class JoueurHumain extends Vivant implements Executable {
        ordreAFaire = null;
      }
 
+    /**
+     * Cette méthode sert à demander au joueur l'ordre qu'il veut donner à son avatar. Celui ci est enregistré par le biais d'un string qui se retrouve enregistré dans l'objet Joueur.
+     *
+     * @param ordre
+     *         L'ordre que le personnage devra exécuter.
+     */
      public void setOrdre(java.lang.String ordre){
          this.ordreAFaire = ordre;
      }
 
+     /**
+      * Cette méthode correspond à l'action de prendre un objet pour le joueurHumain.
+      *
+      * @param nomObjet
+      *         Le nom de l'objet dont le joueur doit se saisir.
+      *
+      * @throws ObjetAbsentDeLaPieceException
+      *         Renvoie l'erreur d'un objet à prendre qui n'est pas dans la même piece que le joueur.
+      * @throws ObjetNonDeplacableException
+      *         Renvoie l'erreur d'un objet que le joueur veut prendre qui n'est pas déplaçable.
+      */
      private void commandePrendre(String nomObjet)throws ObjetAbsentDeLaPieceException, ObjetNonDeplacableException{
          this.prendre(nomObjet);
      }
 
+     /**
+      * Cette méthode correspond pour le joueur à l'action de déposer un objet de son stuff dans la pièce où il est présent.
+      *
+      * @param nomObjet
+      *         Le nom de l'objet que le joueur veut déposer.
+      *
+      * @throws ObjetNonPossedeParLeVivantException
+      *         Renvoie l'erreur d'un objet que le joueur ne possède pas et ne peut donc pas déposer.
+      */
      private void commandePoser(String nomObjet)throws ObjetNonPossedeParLeVivantException{
          this.deposer(nomObjet);
      }
 
+     /**
+      * Cette méthode correspond pour le joueur à l'action de franchir une porte, changeant alors de pièce.
+      *
+      * @param nomPorte
+      *         Le nom de la porte que le joueur veut franchir.
+      *
+      * @throws PorteFermeException
+      *         Renvoie l'erreur d'une porte non traversable car fermée.
+      * @throws PorteInexistanteDansLaPieceException
+      *         Renvoie l'erreur d'une porte non présente dans la pièce où est le joueur et qu'il ne peut donc pas traverser.
+      */
      private void commandeFranchir(String nomPorte)throws PorteFermeException, PorteInexistanteDansLaPieceException{
          this.franchir(nomPorte);
      }
 
+     /**
+      * Cette méthode correspond pour le joueur à l'action d'ouvrir une porte. (plus précisément de l'activer. Si la porte est déjà ouverte il va la fermer).
+      *
+      * @param nomPorte
+      *         Le nom de la porte que le joueur veut activer.
+      *
+      * @throws ActivationException
+      *         Renvoie l'erreur d'une porte non activable. (Parce que cassée ou verrouillée par exemple)
+      * @throws PorteInexistanteDansLaPieceException
+      *         Renvoie l'erreur d'une porte non présente dans la pièce où est le joueur et qu'il ne peut donc pas activer.
+      */
      private void commandeOuvrirPorte(String nomPorte)throws ActivationException, PorteInexistanteDansLaPieceException{
          this.activerActivable(this.getPiece().getPorte(nomPorte));
      }
 
+     /**
+      * Cette méthode correspond pour le joueur à l'action d'ouvrir une porte, avec un objet en particulier. (plus précisément de l'activer. Si la porte est déjà ouverte il va la fermer).
+      *
+      * @param nomPorte
+      *         Le nom de la porte que le joueur veut activer.
+      * @param nomObjet
+      *         Le nom de l'objet que le joueur veut utiliser pour activer la porte.
+      *
+      * @throws ActivationException
+      *         Renvoie l'erreur d'une porte non activable. (Parce que cassée ou verrouillée par exemple)
+      * @throws PorteInexistanteDansLaPieceException
+      *         Renvoie l'erreur d'une porte non présente dans la pièce où est le joueur et qu'il ne peut donc pas activer.
+      */
      private void commandeOuvrirPorte(String nomPorte, String nomObjet)throws ActivationException, PorteInexistanteDansLaPieceException,ObjetNonPossedeParLeVivantException{
          this.activerActivableAvecObjet(this.getPiece().getPorte(nomPorte),this.getObjet(nomObjet));
      }
 
+     /**
+      * Cette méthode n'est pas encore définie.
+      */
      public void executer() throws java.lang.Throwable{
 
      }

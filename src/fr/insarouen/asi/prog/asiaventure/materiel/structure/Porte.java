@@ -49,6 +49,21 @@ public class Porte extends ElementStructurel implements Activable{
         this.etat = Etat.FERME;
     }
 
+    /**
+     * Lors de la construction d'une porte, le constructeur de la classe ElementStructurel est appelé avec le nom de la pièce et le monde associé.
+     * On renseigne ensuite les deux pièces que la porte relie. Si le constructeur comprend également une serrure alors la porte est con sidérée comme verouillée et elle est liée à la serrure en question.
+     *
+     * @param nom
+     *        Le nom de l'ElementStructurel
+     * @param monde
+     *        Le monde concerné
+     * @param pieceA
+     *        La première piece reliée par la porte.
+     * @param pieceB
+     *        La seconde pièce reliée par la porte.
+     * @throws NomDEntiteDejaUtiliseDansLeMondeException
+     *        Renvoie l'exception d'un nom déjà utilisé dans monde.
+     */
     public Porte(String nom, Monde monde,Serrure serrure, Piece pieceA,Piece pieceB) throws NomDEntiteDejaUtiliseDansLeMondeException{
         this(nom,monde,pieceA,pieceB);
         this.serrure = serrure;
