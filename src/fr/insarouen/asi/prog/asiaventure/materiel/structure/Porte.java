@@ -61,6 +61,8 @@ public class Porte extends ElementStructurel implements Activable{
      *        La première piece reliée par la porte.
      * @param pieceB
      *        La seconde pièce reliée par la porte.
+     * @param serrure
+     *        La serrure qui est entre les deux pièces reliées par la porte.
      * @throws NomDEntiteDejaUtiliseDansLeMondeException
      *        Renvoie l'exception d'un nom déjà utilisé dans monde.
      */
@@ -115,8 +117,6 @@ public class Porte extends ElementStructurel implements Activable{
      *        L'objet qu'on cherche à utiliser pour ouvrir la porte.
      * @throws ActivationImpossibleAvecObjetException
      *        retourne l'erreur d'une entité inactivable avec l'objet.
-     * @throws ActivationImpossibleException
-     *        retourne l'erreur d'une entité inctivable.
      *
      */
     public void activerAvec(Objet obj) throws ActivationImpossibleAvecObjetException{

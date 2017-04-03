@@ -34,6 +34,8 @@ public class Monstre extends Vivant implements Executable{
    *        Les points de force du Monstre
    * @param piece
    *        La Piece dans laquelle se situe le Monstre
+   * @throws NomDEntiteDejaUtiliseDansLeMondeException
+   *         Propage l'exception NomDEntiteDejaUtiliseDansLeMondeException
    */
    public Monstre(String nom, Monde monde, int pv, int pf, Piece piece) throws NomDEntiteDejaUtiliseDansLeMondeException {
      super(nom,monde,pv,pf,piece);

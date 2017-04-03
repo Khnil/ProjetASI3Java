@@ -276,7 +276,7 @@ public class Vivant extends Entite{
      * Cette méthode permet au vivant de franchir une porte et ainsi de changer de pièce. Pour ce faire on récupère la porte dans la pièce.
      * on vérifie ensuite que la porte est bien présente et qu'elle est franchissable. on change ensuite la pièce du vivant.
      *
-     * @param porte
+     * @param nomPorte
      *      Le nom de la porte que l'on cherche à franchir.
      *
      * @throws PorteFermeException

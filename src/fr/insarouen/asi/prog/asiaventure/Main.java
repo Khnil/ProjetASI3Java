@@ -25,7 +25,11 @@ public class Main{
 
     /**
      * Il s'agit de le fonction main qui a pour but d'afficher le menu d'action, enregistrer ce que le joueur shouaite faire et l'effectuer. Cette fonction boucle jusqu'à ce que l'utilisateur demande de sortir.
+     * @param args
+     *        paramètre par défaut
      *
+     *  @throws Throwable
+     *          propage Throwable
      */
     public static void main(String[] args) throws Throwable{
         Scanner reponse = new Scanner(System.in);

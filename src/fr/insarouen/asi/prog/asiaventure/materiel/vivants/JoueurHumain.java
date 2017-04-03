@@ -31,6 +31,8 @@ public class JoueurHumain extends Vivant implements Executable {
      *        Les points de force du joueur
      * @param piece
      *        La Piece dans laquelle se situe le joueur
+     * @throws NomDEntiteDejaUtiliseDansLeMondeException
+     *         Propage l'exception NomDEntiteDejaUtiliseDansLeMondeException
      */
      public JoueurHumain(String nom, Monde monde, int pv, int pf, Piece piece) throws NomDEntiteDejaUtiliseDansLeMondeException {
        super(nom,monde,pv,pf,piece);

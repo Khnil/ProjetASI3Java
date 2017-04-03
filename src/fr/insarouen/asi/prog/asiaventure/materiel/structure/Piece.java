@@ -117,7 +117,7 @@ public class Piece extends ElementStructurel implements java.io.Serializable {
      *
      * @param obj
      *        L'objet dont on cherche à vérifier la présence dans la pièce.
-     *
+     * @return booleen vrai si la piece contient l'objet, faux sinon.
      */
     public boolean contientObjet(Objet obj){
         return contientObjet(obj.getNom());
@@ -176,7 +176,7 @@ public class Piece extends ElementStructurel implements java.io.Serializable {
      * Cette fonction fait sortir le vivant de nom 'nom' de la pièce. Elle diminue également la taille du tableau vivants d'une case. Elle retourne enfin le vivant en question.
      * Pour ce faire elle vérifie la présence du vivant au préalable dans la pièce avant de le supprimer du tableau. Si celui ci n'est pas dans la pièce la méthode renvoie une exception et la fonction renvoie null.
      *
-     * @param nom
+     * @param nomVivant
      *      Le nom du vivant que l'on cherche à retirer.
      *
      * @return Le vivant dont le nom est 'nom' ou null si celui ci n'est pas présent.
@@ -199,7 +199,7 @@ public class Piece extends ElementStructurel implements java.io.Serializable {
      *
      * @param vivant
      *        Le vivant dont on cherche à vérifier la présence dans la pièce.
-     *
+     * @return un booleen vrai si la piece contient le vivant, non sinon.
      */
     public boolean contientVivant(Vivant vivant){
         return contientVivant(vivant.getNom());
@@ -208,9 +208,9 @@ public class Piece extends ElementStructurel implements java.io.Serializable {
     /**
      *Cette méthode vérifie la présence de l'objet obj dans le tableau objets et retourne la réponse sous forme de booléen.
      *
-     * @param obj
-     *        L'objet dont on cherche à vérifier la présence dans la pièce.
-     *
+     * @param nomVivant
+     *        Le nom de l'objet dont on cherche à vérifier la présence dans la pièce.
+     * @return un booleen vrai si la piece contient le vivant, non sinon.
      */
     public boolean contientVivant(String nomVivant){
         return this.vivants.containsKey(nomVivant);

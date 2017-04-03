@@ -34,7 +34,7 @@ public abstract class Objet extends Entite {
   }
 
   /**
-   * Retourne un booléen suivant la déplacabilité de l'Objet.
+   * @return un booléen suivant la déplacabilité de l'Objet.
    */
   public abstract boolean estDeplacable();
 }
