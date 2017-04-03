@@ -1,0 +1,11 @@
+bin/
+classes/
+Classes/
+doc
+src/fr/insarouen/asi/prog/asiaventure/*.o
+src/**/*.o
+testSrc/fr/insarouen/asi/prog/asiaventure/*.o
+src/.*
+
+.tmp
+*.log
