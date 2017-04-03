@@ -76,6 +76,7 @@ public class Monstre extends Vivant implements Executable{
          }
          porteAuPif=tableauPortes[porteAPrendre];
          this.getPiece().sortir(this);
+         aFranchiPorte = true;
          porteAuPif.getPieceAutreCote(this.getPiece()).entrer(this);
        }while(!aFranchiPorte);
    }
