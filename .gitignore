@@ -1,6 +1,7 @@
 bin/
 classes/
 Classes/
+classestest/
 doc
 src/fr/insarouen/asi/prog/asiaventure/*.o
 src/**/*.o

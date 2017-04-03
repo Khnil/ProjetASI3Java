@@ -38,7 +38,7 @@ public class TestVivant {
         assertThat(moi.getPointVie(), IsEqual.equalTo(20));
         assertThat(moi.getPointForce(), IsEqual.equalTo(5));
         assertThat(moi.getPiece(), IsSame.sameInstance(chambre));
-        //assertThat(moi.getObjets().size(), IsEqual.equalTo(0));
+        assertThat(moi.getObjets().size(), IsEqual.equalTo(0));
         assertThat(chambre.contientVivant(moi), is(true));
     }
 
