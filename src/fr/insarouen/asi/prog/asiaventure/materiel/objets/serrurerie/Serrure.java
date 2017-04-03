@@ -57,7 +57,7 @@ public class Serrure extends Objet implements Activable{
      */
     public Serrure(String nom,Monde monde)throws NomDEntiteDejaUtiliseDansLeMondeException{
         super(nom,monde);
-        clef = creerClef();
+        //clef = creerClef();
         etat = Etat.VERROUILLE;
     }
 

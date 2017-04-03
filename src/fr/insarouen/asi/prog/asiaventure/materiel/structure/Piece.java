@@ -25,7 +25,7 @@ public class Piece extends ElementStructurel implements java.io.Serializable {
 
     private HashMap <String,Objet> objets= new HashMap<String,Objet>();//HashMap
     private HashMap <String,Vivant> vivants= new HashMap<String,Vivant>();//HashMap
-    private Map<String,Porte> portes;
+    private HashMap<String,Porte> portes = new HashMap<String,Porte>();
 
     /**
      * Lors de la construction d'une pièce, le constructeur de la classe ElementStructurel est appelé avec le nom de la pièce et le monde associé.
@@ -39,7 +39,6 @@ public class Piece extends ElementStructurel implements java.io.Serializable {
      */
     public Piece(String nom, Monde monde) throws NomDEntiteDejaUtiliseDansLeMondeException{
         super(nom, monde);
-        portes= new HashMap<String,Porte>();
     }
 
     /**

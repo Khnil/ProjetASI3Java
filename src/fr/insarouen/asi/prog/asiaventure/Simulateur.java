@@ -82,6 +82,10 @@ public class Simulateur {
         } while (scan.hasNext());
     }
 
+    public Monde getMonde() {
+        return this.monde;
+    }
+    
     /**
      * Cette méthode sert à enregistrer le monde actuel et l'état du jeu dans un flux de sortie d'objets.
      *
@@ -139,7 +143,7 @@ public class Simulateur {
         nomPremierePiece = nomPremierePiece.substring(1,nomPremierePiece.length()-1);
         String nomSecondePiece = scan.next();
         nomSecondePiece = nomSecondePiece.substring(1,nomSecondePiece.length()-1);
-        new Porte(nomPorteSerrure,this.monde,new Serrure(this.monde),new Piece(nomPremierePiece,this.monde),new Piece(nomSecondePiece,this.monde));
+        new Porte(nomPorteSerrure,this.monde,new Serrure(this.monde),(Piece)this.monde.getEntite(nomPremierePiece),(Piece)this.monde.getEntite(nomSecondePiece));
     }
 
     /**
@@ -161,7 +165,7 @@ public class Simulateur {
         nomPremierePiece = nomPremierePiece.substring(1,nomPremierePiece.length()-1);
         String nomSecondePiece = scan.next();
         nomSecondePiece = nomSecondePiece.substring(1,nomSecondePiece.length()-1);
-        new Porte(nomPorte,this.monde,new Piece(nomPremierePiece,this.monde),new Piece(nomSecondePiece,this.monde));
+        new Porte(nomPorte,this.monde,(Piece)this.monde.getEntite(nomPremierePiece),(Piece)this.monde.getEntite(nomSecondePiece));
     }
 
     /**
@@ -177,9 +181,9 @@ public class Simulateur {
      */
     private void lireClef(Scanner scan)throws NomDEntiteDejaUtiliseDansLeMondeException{
         String nomPorte = scan.next();
-        nomPorte = nomPorte.substring(1,nomPorte.length()-1);
         String nomPiece = scan.next();
-        nomPorte = nomPiece.substring(1,nomPiece.length()-1);
+        nomPorte = nomPorte.substring(1,nomPorte.length()-1);
+        nomPiece = nomPiece.substring(1,nomPiece.length()-1);
         Porte porte = (Porte)this.monde.getEntite(nomPorte);
         Piece piece = (Piece)this.monde.getEntite(nomPiece);
         Clef clef = porte.getSerrure().creerClef();
