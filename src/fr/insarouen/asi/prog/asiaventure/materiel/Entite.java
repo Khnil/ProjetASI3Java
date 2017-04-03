@@ -19,7 +19,7 @@ import fr.insarouen.asi.prog.asiaventure.EntiteDejaDansUnAutreMondeException;
   * @version 1.0
   */
 
-public abstract class Entite{
+public abstract class Entite implements java.io.Serializable{
     /**
       * Le nom de l'entite.
       */
