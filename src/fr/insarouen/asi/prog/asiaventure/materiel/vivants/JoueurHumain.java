@@ -13,6 +13,7 @@ import fr.insarouen.asi.prog.asiaventure.materiel.ActivationException;
 import fr.insarouen.asi.prog.asiaventure.materiel.structure.Piece;
 import fr.insarouen.asi.prog.asiaventure.materiel.structure.Porte;
 import fr.insarouen.asi.prog.asiaventure.materiel.objets.Objet;
+import java.lang.reflect.*;
 
 public class JoueurHumain extends Vivant implements Executable {
 
@@ -127,8 +128,30 @@ public class JoueurHumain extends Vivant implements Executable {
      /**
       * Cette méthode n'est pas encore définie.
       */
-     public void executer() throws java.lang.Throwable{
+     public void executer() throws CommandeImpossiblePourLeVivantException, Throwable{
+            String[] mots = ordreAFaire.split(" ");
+            String ordreDonne = mots[0];
+            ordreDonne = ordreDonne.substring(0,1).toUpperCase()+ordreDonne.substring(1);
 
+            Class[] paramsFormels = new Class[mots.length-1];
+            for (int i=0; i<paramsFormels.length;i++){
+                tabFormel[i]=java.lang.String.class;
+            }
+            try{
+                Object[] objets = Arrays.copyOfRange(mots,1,mots.length);
+                Class<?> classe = this.getClass();
+                Method methode = classe.getMethod("commande"+ordreDonne,paramsFormels);
+                methode.invoke(this,objets);
+            }
+            catch(NoSuchMethodException e){
+                throw new CommandeImpossiblePourLeVivantException("Problème avec la commande '"+ this.ordreAFaire+"' : cette commande n'existe pas pour le vivant "+this.getNom());
+            }
+            catch(IllegalArgumentException e){
+                throw new CommandeImpossiblePourLeVivantException("Problème avec la commande '"+this.ordreAFaire+"' : Paramètres non valides");
+            }
+            catch(InvocationTargetException e){
+                System.err.println(e.getCause().getMessage());
+            }
      }
 
 }
