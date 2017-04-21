@@ -101,12 +101,10 @@ public class Porte extends ElementStructurel implements Activable{
      *
      */
     public void activer() throws ActivationImpossibleException{
-        if (!((this.getEtat().equals(Etat.FERME)) || (this.getEtat().equals(Etat.OUVERT))))
-            throw new ActivationImpossibleException("Porte impossible à activer.");
-        if (this.etat.equals(Etat.FERME))
-            this.etat = Etat.OUVERT;
-        if (this.etat.equals(Etat.OUVERT))
-            this.etat = Etat.FERME;
+        if (!((this.getEtat().equals(Etat.FERME))||(this.getEtat().equals(Etat.OUVERT))))
+          throw new ActivationImpossibleException("Porte impossible à activer");
+
+        this.etat = (this.etat.equals(Etat.FERME))? Etat.OUVERT : Etat.FERME;
     }
 
     /**

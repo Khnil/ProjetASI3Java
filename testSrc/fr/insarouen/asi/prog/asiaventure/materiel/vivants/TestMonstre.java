@@ -33,16 +33,15 @@ public class TestMonstre {
         piece = new Piece("piece",monde);
         piece2 = new Piece("piece2",monde);
         piece3 = new Piece("piece3",monde);
-        serrure = new Serrure("serrure",monde);
-        monstre = new Monstre("Monstre",monde,20,10,piece);
         porte = new Porte("porte",monde,piece,piece2);
-        porteFermee = new Porte("porteFermee",monde,serrure,piece2,piece3);
+        serrure = new Serrure("serrure",monde);
+
     }
 
     @Test
     public void testConstructeur(){
-      assertThat(monstre.getPointVie(),IsEqual.equalTo(20));
       assertThat(monstre.getPointForce(),IsEqual.equalTo(10));
+      assertThat(monstre.getPointVie(),IsEqual.equalTo(20));
       assertThat(monstre.getPiece(),IsSame.sameInstance(piece));
       assertThat(monstre.getNom(),IsEqual.equalTo("Monstre"));
       assertThat(monstre.getMonde(),IsSame.sameInstance(monde));
@@ -50,37 +49,33 @@ public class TestMonstre {
 
     @Test(expected=Throwable.class)
     public void testExcuterMonstreMort() throws Throwable{
-      Monstre monstre2 = new Monstre("monstreMort",monde,0,10,piece);
-      monstre2.executer();
+        System.out.println("TEST EXECUTER");
+      Monstre monstremort = new Monstre("monstreMort",monde,0,10,piece);
+      monstremort.executer();
     }
 
     @Test
     public void testExecuter() throws Throwable{
+
         PiedDeBiche pdb = new PiedDeBiche("pdb",monde);
         PiedDeBiche pdb2 = new PiedDeBiche("pdb2",monde);
-        PiedDeBiche pdb3 = new PiedDeBiche("pdb3",monde);
 
         Map<String,Objet> save = new HashMap<>();
         save.put(pdb.getNom(),pdb);
         Map<String,Objet> save2 = new HashMap<>();
         save2.put(pdb2.getNom(),pdb2);
-        Map<String,Objet> save3 = new HashMap<>();
-        save3.put(pdb3.getNom(),pdb3);
 
         piece.deposer(pdb);
-        monstre.prendre(pdb);
+        monstre.prendre("pdb");
         piece2.deposer(pdb2);
-        piece3.deposer(pdb3);
 
-        assertThat(piece.contientObjet(pdb),is(false));
-        assertThat(piece2.contientObjet(pdb2),is(true));
-        assertThat(piece3.contientObjet(pdb3),is(true));
+        assertThat(piece.contientObjet(pdb),Is.is(false));
+        assertThat(piece2.contientObjet(pdb2),Is.is(true));
         assertThat(monstre.getObjets(),IsEqual.equalTo(save));
-
         monstre.executer();
-
         assertThat(monstre.getPointVie(),IsEqual.equalTo(19));
-        assertThat(monstre.getPiece().getObjets(),IsEqual.equalTo(save));
-        assertThat(monstre.getObjets(),IsEqual.equalTo(save3));
+        assertThat(monstre.getObjets(),IsEqual.equalTo(save2));
+        assertThat(piece2.getObjets(),IsEqual.equalTo(save));
+
+      }
     }
-}

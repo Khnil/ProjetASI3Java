@@ -11,6 +11,9 @@ import fr.insarouen.asi.prog.asiaventure.materiel.objets.Objet;
 import fr.insarouen.asi.prog.asiaventure.materiel.objets.PiedDeBiche;
 import fr.insarouen.asi.prog.asiaventure.Monde;
 import fr.insarouen.asi.prog.asiaventure.materiel.structure.Piece;
+import fr.insarouen.asi.prog.asiaventure.materiel.structure.Porte;
+import fr.insarouen.asi.prog.asiaventure.materiel.structure.PorteFermeException;
+import fr.insarouen.asi.prog.asiaventure.materiel.structure.PorteInexistanteDansLaPieceException;
 import fr.insarouen.asi.prog.asiaventure.materiel.Entite;
 import fr.insarouen.asi.prog.asiaventure.materiel.structure.ObjetAbsentDeLaPieceException;
 import fr.insarouen.asi.prog.asiaventure.materiel.objets.ObjetNonDeplacableException;
@@ -122,5 +125,26 @@ public class TestVivant {
     public void testGetObjet() throws Exception{
         moi.prendre("PiedDeBiche");
         assertThat(moi.getObjet("PiedDeBiche"), IsSame.sameInstance((Objet) pourCasserLaPorte));
+    }
+
+    @Test(expected=PorteFermeException.class)
+    public void TestfranchirPorteFermeException() throws Exception{
+        Piece salon = new Piece("Salon",maison);
+        Porte porte = new Porte("Porte",maison,salon,chambre);
+        moi.franchir("Porte");
+    }
+
+    @Test(expected=PorteInexistanteDansLaPieceException.class)
+    public void TestfranchirPorteInexistanteDansLaPieceException() throws Exception{
+        moi.franchir("Porte");
+    }
+
+    @Test
+    public void Testfranchir() throws Exception{
+        Piece salon = new Piece("Salon",maison);
+        Porte porte = new Porte("Porte",maison,salon,chambre);
+        moi.activerActivable(porte);
+        moi.franchir("Porte");
+        assertThat(moi.getPiece().getNom(),IsEqual.equalTo("Salon"));
     }
 }

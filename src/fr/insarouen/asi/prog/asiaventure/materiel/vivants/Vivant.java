@@ -71,7 +71,7 @@ public class Vivant extends Entite{
         for(int i=0;i< objets.length;i++){
             this.stuff.put(objets[i].getNom(),objets[i]);
         }
-        this.getPiece().entrer(this);
+        this.piece.entrer(this);
         }
 
     /**
@@ -88,8 +88,14 @@ public class Vivant extends Entite{
      */
     public void prendre(String nomObj) throws ObjetAbsentDeLaPieceException,
                     ObjetNonDeplacableException{
-        Objet obj=this.piece.retirer(nomObj);
-        this.stuff.put(obj.getNom(),obj);
+        if (!(this.piece.contientObjet(nomObj))) {
+            throw new ObjetAbsentDeLaPieceException(nomObj+" est absent de la piece "+this.piece.getNom());}
+        Objet obj = piece.retirer(nomObj);
+        if (!obj.estDeplacable()) {
+            throw new ObjetNonDeplacableException(nomObj+" n'est pas déplaçable");
+        }
+        stuff.put(nomObj,obj);
+
     }
 
     /**
@@ -122,8 +128,7 @@ public class Vivant extends Entite{
         if (!possede(getObjet(nomObj))){
             throw new ObjetNonPossedeParLeVivantException("L'objet "+nomObj+" à deposer n'est pas dans le stuff de "+this.getNom()+".");
         }
-        Objet obj = this.stuff.remove(nomObj);
-        this.getPiece().deposer(obj);
+        piece.deposer(this.stuff.remove(nomObj));
     }
 
     /**
@@ -302,19 +307,17 @@ public class Vivant extends Entite{
      */
     public String toString(){
         StringBuilder laChaine = new StringBuilder("");
-        laChaine.append(this.getNom());
+        laChaine.append(super.toString());
         laChaine.append("\n");
-        laChaine.append(this.getMonde());
+        laChaine.append(this.getMonde().toString());
         laChaine.append("\n");
-        laChaine.append(this.getPiece());
+        laChaine.append(this.getPiece().toString());
         laChaine.append("\n");
         laChaine.append(this.getPointVie());
         laChaine.append("\n");
         laChaine.append(this.getPointForce());
         laChaine.append("\n Entités: \n");
-        for(Objet o : this.stuff.values()){
-            laChaine.append(String.format(" \t - %s \n",o.getNom()));
-        }
+        laChaine.append(stuff.toString());
         laChaine.append("\n");
         return laChaine.toString();
     }

@@ -135,7 +135,7 @@ public class JoueurHumain extends Vivant implements Executable {
 
             Class[] paramsFormels = new Class[mots.length-1];
             for (int i=0; i<paramsFormels.length;i++){
-                tabFormel[i]=java.lang.String.class;
+                paramsFormels[i]=java.lang.String.class;
             }
             try{
                 Object[] objets = Arrays.copyOfRange(mots,1,mots.length);
