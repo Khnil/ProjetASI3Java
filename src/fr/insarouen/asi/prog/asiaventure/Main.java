@@ -87,7 +87,22 @@ public class Main{
      *
      */
     private static void choix1(){
-        System.out.println("A finir\n");
+        String choix = "oui";
+        do {
+            try {
+                simulateur.executerUnTour();
+            } catch(ASIAventureException e) {
+                System.err.println(e.getMessage());
+            }
+            if (simulateur.getEtatDuJeu()==EtatDuJeu.ENCOURS) {
+                System.out.println("\n Souhaitez-vous rejouer ? (oui ou non)");
+            Scanner scan = new Scanner(System.in);
+            choix = scan.nextLine();
+            }
+        } while (choix.equals("oui")&&simulateur.getEtatDuJeu()==EtatDuJeu.ENCOURS);
+
+        String resultat = (simulateur.getEtatDuJeu()==EtatDuJeu.SUCCES) ? "Vous avez gagne":"Vous avez perdu";
+        System.out.println(String.format("Impossible de jouer, la partie est finie. %s",resultatPartie));
     }
 
     /**
