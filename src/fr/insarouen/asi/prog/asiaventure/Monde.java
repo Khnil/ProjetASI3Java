@@ -105,11 +105,8 @@ public class Monde implements Serializable{
      */
     public String toString(){
       StringBuilder laChaine = new StringBuilder("");
+      laChaine.append("Monde: ");
       laChaine.append(this.getNom());
-      laChaine.append("\n Entités: \n");
-      for(Entite e : this.entites.values()){
-          laChaine.append(String.format(" \t - %s \n",e.getNom()));
-      }
       laChaine.append("\n");
       return laChaine.toString();
     }

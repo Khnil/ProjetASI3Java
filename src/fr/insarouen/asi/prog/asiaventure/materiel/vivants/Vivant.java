@@ -307,16 +307,14 @@ public class Vivant extends Entite{
      */
     public String toString(){
         StringBuilder laChaine = new StringBuilder("");
-        laChaine.append(super.toString());
         laChaine.append("\n");
-        laChaine.append(this.getMonde().toString());
-        laChaine.append("\n");
-        laChaine.append(this.getPiece().toString());
-        laChaine.append("\n");
+        laChaine.append("Vivant: ");
+        laChaine.append(this.getNom());
+        laChaine.append("\nPoint de vie: ");
         laChaine.append(this.getPointVie());
-        laChaine.append("\n");
+        laChaine.append("\nPoint de force: ");
         laChaine.append(this.getPointForce());
-        laChaine.append("\n Entités: \n");
+        laChaine.append("\nStuff: \n");
         laChaine.append(stuff.toString());
         laChaine.append("\n");
         return laChaine.toString();

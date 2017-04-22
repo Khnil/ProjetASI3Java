@@ -131,23 +131,28 @@ public class JoueurHumain extends Vivant implements Executable {
      public void executer() throws CommandeImpossiblePourLeVivantException, Throwable{
             String[] mots = ordreAFaire.split(" ");
             String ordreDonne = mots[0];
+
             ordreDonne = ordreDonne.substring(0,1).toUpperCase()+ordreDonne.substring(1);
+            String nomMethode = "commande"+ordreDonne;
+
+
+            System.out.println("\n"+nomMethode+"\n");
 
             Class[] paramsFormels = new Class[mots.length-1];
             for (int i=0; i<paramsFormels.length;i++){
                 paramsFormels[i]=java.lang.String.class;
             }
+
             try{
                 Object[] objets = Arrays.copyOfRange(mots,1,mots.length);
-                Class<?> classe = this.getClass();
-                Method methode = classe.getMethod("commande"+ordreDonne,paramsFormels);
+                Method methode = this.getClass().getDeclaredMethod(nomMethode,paramsFormels);
                 methode.invoke(this,objets);
             }
             catch(NoSuchMethodException e){
-                throw new CommandeImpossiblePourLeVivantException("Problème avec la commande '"+ this.ordreAFaire+"' : cette commande n'existe pas pour le vivant "+this.getNom());
+                throw new CommandeImpossiblePourLeVivantException("Problème avec '"+ nomMethode +"' : cette commande n'existe pas pour le vivant "+this.getNom());
             }
             catch(IllegalArgumentException e){
-                throw new CommandeImpossiblePourLeVivantException("Problème avec la commande '"+this.ordreAFaire+"' : Paramètres non valides");
+                throw new CommandeImpossiblePourLeVivantException("Problème avec la commande '"+ nomMethode +"' : Paramètres non valides");
             }
             catch(InvocationTargetException e){
                 System.err.println(e.getCause().getMessage());

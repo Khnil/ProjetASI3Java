@@ -234,6 +234,10 @@ public class Simulateur {
                 JoueurHumain joueur = (JoueurHumain)e; //transtypage
                 System.out.println(affichageSituation(joueur));
                 System.out.println("\n Que voulez vous faire? \n");
+                System.out.println("\t OuvrirPorte \n");
+                System.out.println("\t Franchir \n");
+                System.out.println("\t Poser \n");
+                System.out.println("\t Prendre \n");
                 String ordre = scan.next();
                 joueur.setOrdre(ordre);
             }
@@ -261,9 +265,10 @@ public class Simulateur {
 
     private String affichageSituation(JoueurHumain joueur){
         StringBuilder situationActuelle = new StringBuilder("\n");
-        situationActuelle.append(joueur.toString());
-        situationActuelle.append("\n");
+        situationActuelle.append(joueur.getMonde().toString());
         situationActuelle.append(joueur.getPiece().toString());
+        situationActuelle.append(joueur.getPiece().getPortes().toString());
+        situationActuelle.append(joueur.toString());
         return situationActuelle.toString();
     }
 

@@ -166,15 +166,13 @@ public class Porte extends ElementStructurel implements Activable{
      */
     public String toString(){
       StringBuilder laChaine = new StringBuilder("");
-      laChaine.append("\n Nom: ");
+      laChaine.append("\n Porte: ");
       laChaine.append(this.getNom());
-      laChaine.append("\n Monde: ");
-      laChaine.append(this.getMonde());
-      laChaine.append("\n Piece A: ");
+      laChaine.append("\n Entre la pièce ");
       laChaine.append(this.pieceA.getNom());
-      laChaine.append("\n Piece B: ");
+      laChaine.append(" et la pièce ");
       laChaine.append(this.pieceB.getNom());
-      laChaine.append("\n Piece Etat: ");
+      laChaine.append("\n Etat de la porte: ");
       laChaine.append(getEtat());
       laChaine.append("\n");
       return laChaine.toString();

@@ -131,15 +131,11 @@ public class Piece extends ElementStructurel implements java.io.Serializable {
      */
     public String toString(){
         StringBuilder laChaine = new StringBuilder("");
+        laChaine.append("Piece: ");
         laChaine.append(this.getNom());
         laChaine.append("\n Objets: \n");
         for(Objet o : this.objets.values()){
             laChaine.append(String.format(" \t - %s \n",o.getNom()));
-        }
-        laChaine.append("\n");
-        laChaine.append("\n Vivants: \n");
-        for(Vivant v : this.vivants.values()){
-            laChaine.append(String.format(" \t - %s \n",v.getNom()));
         }
         laChaine.append("\n");
         return laChaine.toString();

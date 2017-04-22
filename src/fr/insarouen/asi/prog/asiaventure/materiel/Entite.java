@@ -1,5 +1,7 @@
 package fr.insarouen.asi.prog.asiaventure.materiel;
 
+import java.util.*;
+import java.io.*;
 import java.lang.String;
 import java.lang.Object;
 import fr.insarouen.asi.prog.asiaventure.Monde;
@@ -87,9 +89,14 @@ public abstract class Entite implements java.io.Serializable{
       * @return Un string avec le monde et le nom de l'entite.
       */
     public String toString(){
-        String str = "";
-        str=("Monde: "+monde.getNom()+"Nom de l'entite: "+nom);
-        return str;
+        StringBuilder chaine = new StringBuilder("");
+        chaine.append("Monde: ");
+        chaine.append(getMonde());
+        chaine.append("\n");
+        chaine.append("Nom entité: ");
+        chaine.append(getNom());
+        chaine.append("\n");
+        return chaine.toString();
     }
 
     /**
