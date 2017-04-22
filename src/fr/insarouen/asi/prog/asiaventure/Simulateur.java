@@ -1,13 +1,11 @@
 package fr.insarouen.asi.prog.asiaventure;
 
 import java.lang.ClassNotFoundException;
-import java.io.IOException;
-import java.io.Reader;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
+import java.util.*;
+import java.util.Scanner;
 import fr.insarouen.asi.prog.asiaventure.Monde;
 import fr.insarouen.asi.prog.asiaventure.materiel.EtatDuJeu;
-import java.util.Scanner;
 import java.lang.String;
 import fr.insarouen.asi.prog.asiaventure.materiel.structure.Piece;
 import fr.insarouen.asi.prog.asiaventure.NomDEntiteDejaUtiliseDansLeMondeException;
@@ -15,6 +13,7 @@ import fr.insarouen.asi.prog.asiaventure.materiel.objets.serrurerie.Serrure;
 import fr.insarouen.asi.prog.asiaventure.materiel.objets.serrurerie.Clef;
 import fr.insarouen.asi.prog.asiaventure.materiel.structure.Porte;
 import fr.insarouen.asi.prog.asiaventure.materiel.vivants.JoueurHumain;
+import fr.insarouen.asi.prog.asiaventure.materiel.Executable;
 
 /**
  * Classe Simulateur, celle ci comporte le monde présent et l'état du jeu. Elle sert nottament à mettre en place le jeu à l'aide de fichiers de sauvegarde.<br>
@@ -25,6 +24,16 @@ import fr.insarouen.asi.prog.asiaventure.materiel.vivants.JoueurHumain;
 public class Simulateur {
     private Monde monde;
     private EtatDuJeu jeu;
+    private Collection<ConditionDeFin> conditionDeFin;
+
+    public Simulateur(Monde monde, ConditionDeFin... conditionsDeFin){
+        this.monde = monde;
+        conditionDeFin = new LinkedList<ConditionDeFin>();
+        for (ConditionDeFin cond:conditionsDeFin) {
+            conditionDeFin.add(cond);
+        jeu = EtatDuJeu.ENCOURS;
+        }
+    }
 
     /**
      * Constructeur de Simulateur. Avec un ObjectInputStream le simulateur prend simplement comme nom de monde le nom du monde actuel et comme état de jeu l'état de jeu actuel.
@@ -85,7 +94,7 @@ public class Simulateur {
     public Monde getMonde() {
         return this.monde;
     }
-    
+
     /**
      * Cette méthode sert à enregistrer le monde actuel et l'état du jeu dans un flux de sortie d'objets.
      *
@@ -214,4 +223,54 @@ public class Simulateur {
         new JoueurHumain(nomHumain,this.monde,pv,pf,piece);
     }
 
+    public EtatDuJeu getEtatDuJeu(){
+        return jeu;
+    }
+
+    public EtatDuJeu executerUnTour() throws Throwable{
+        Scanner scan = new Scanner(System.in);
+        for (Executable e: this.monde.getExecutables()) {
+            if (e instanceof JoueurHumain){
+                JoueurHumain joueur = (JoueurHumain)e; //transtypage
+                System.out.println(affichageSituation(joueur));
+                System.out.println("\n Que voulez vous faire? \n");
+                String ordre = scan.next();
+                joueur.setOrdre(ordre);
+            }
+        }
+
+        for (Executable e:this.monde.getExecutables()) {
+            try{
+                e.executer();
+            } catch (ASIAventureException exception){
+                exception.printStackTrace();
+            }
+        }
+
+        for (ConditionDeFin cond:this.conditionDeFin) {
+            EtatDuJeu etatDuJeuActuel = cond.verifierCondition();
+            if (etatDuJeuActuel!=EtatDuJeu.ENCOURS) {
+                this.jeu=etatDuJeuActuel;
+                return etatDuJeuActuel;
+            }
+        }
+
+        this.jeu=EtatDuJeu.ENCOURS;
+        return getEtatDuJeu();
+    }
+
+    private String affichageSituation(JoueurHumain joueur){
+        StringBuilder situationActuelle = new StringBuilder("\n");
+        situationActuelle.append(joueur.toString());
+        situationActuelle.append("\n");
+        situationActuelle.append(joueur.getPiece().toString());
+        return situationActuelle.toString();
+    }
+
+    public EtatDuJeu executerJusquALaFin() throws Throwable{
+        do {
+            executerUnTour();
+        } while (getEtatDuJeu()==EtatDuJeu.ENCOURS);
+        return getEtatDuJeu();
+    }
 }

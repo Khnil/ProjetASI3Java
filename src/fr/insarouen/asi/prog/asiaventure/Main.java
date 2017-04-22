@@ -3,6 +3,7 @@ import java.util.Scanner;
 import java.lang.System;
 import java.lang.String;
 import fr.insarouen.asi.prog.asiaventure.Simulateur;
+import fr.insarouen.asi.prog.asiaventure.materiel.EtatDuJeu;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.FileOutputStream;
@@ -86,7 +87,7 @@ public class Main{
      * Cette méthode renvoie au choix "Jouer" Celle ci reste encore à définir.
      *
      */
-    private static void choix1(){
+    private static void choix1() throws Throwable{
         String choix = "oui";
         do {
             try {
@@ -102,7 +103,7 @@ public class Main{
         } while (choix.equals("oui")&&simulateur.getEtatDuJeu()==EtatDuJeu.ENCOURS);
 
         String resultat = (simulateur.getEtatDuJeu()==EtatDuJeu.SUCCES) ? "Vous avez gagne":"Vous avez perdu";
-        System.out.println(String.format("Impossible de jouer, la partie est finie. %s",resultatPartie));
+        System.out.println(String.format("Impossible de jouer, la partie est finie. %s",resultat));
     }
 
     /**

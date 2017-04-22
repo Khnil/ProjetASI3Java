@@ -1,12 +1,12 @@
 package fr.insarouen.asi.prog.asiaventure;
 
-import java.util.HashMap;
-import java.io.Serializable;
+import java.util.*;
+import java.io.*;
 import java.lang.String;
-import java.util.Arrays;
 import fr.insarouen.asi.prog.asiaventure.materiel.Entite;
 import fr.insarouen.asi.prog.asiaventure.NomDEntiteDejaUtiliseDansLeMondeException;
 import fr.insarouen.asi.prog.asiaventure.EntiteDejaDansUnAutreMondeException;
+import fr.insarouen.asi.prog.asiaventure.materiel.Executable;
 
 /**
  * classe définissant un monde du jeu. <br>
@@ -31,6 +31,7 @@ public class Monde implements Serializable{
    */
   private HashMap<String,Entite> entites; //HashMap
 
+  private Collection<Executable> executables = new LinkedList<>();
   /**
    * Constructeur Monde <br>
    * A la construction d'un objet Monde, le "nom" du Monde est fixé.
@@ -63,6 +64,10 @@ public class Monde implements Serializable{
       if(!(this.nom.equals(entite.getMonde().getNom()))){
         throw new EntiteDejaDansUnAutreMondeException("Cette entite est déjà présente dans un autre monde.");
       }
+
+      if (entite instanceof Executable)
+        executables.add((Executable)entite);
+
       this.entites.put(entite.getNom(),entite);
     }
 
@@ -86,6 +91,10 @@ public class Monde implements Serializable{
      */
     public String getNom(){
       return nom;
+    }
+
+    public Collection<Executable> getExecutables(){
+        return executables;
     }
 
     /**
