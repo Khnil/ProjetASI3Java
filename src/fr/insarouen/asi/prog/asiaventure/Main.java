@@ -89,20 +89,24 @@ public class Main{
      */
     private static void choix1() throws Throwable{
         String choix = "oui";
-        do {
-            try {
-                simulateur.executerUnTour();
-            } catch(ASIAventureException e) {
-                System.err.println(e.getMessage());
-            }
-            if (simulateur.getEtatDuJeu()==EtatDuJeu.ENCOURS) {
-                System.out.println("\n Souhaitez-vous rejouer ? (oui ou non)");
-            Scanner scan = new Scanner(System.in);
-            choix = scan.nextLine();
-            }
-        } while (choix.equals("oui")&&simulateur.getEtatDuJeu()==EtatDuJeu.ENCOURS);
+        if (simulateur.getEtatDuJeu()==EtatDuJeu.ENCOURS){
+            do {
+                try {
+                    simulateur.executerUnTour();
+                } catch(ASIAventureException e) {
+                    System.err.println(e.getMessage());
+                }
+                do {
+                if (simulateur.getEtatDuJeu()==EtatDuJeu.ENCOURS) {
+                    System.out.println("\n Souhaitez-vous rejouer ? (oui ou non)");
+                Scanner scan = new Scanner(System.in);
+                choix = scan.nextLine();
+                }
+            } while (!(choix.equals("oui")||choix.equals("non")||choix.equals("Oui")||choix.equals("Non")));
+            } while (choix.equals("oui")&&simulateur.getEtatDuJeu()==EtatDuJeu.ENCOURS);
+        }
 
-        String resultat = (simulateur.getEtatDuJeu()==EtatDuJeu.SUCCES) ? "Vous avez gagne":"Vous avez perdu";
+        String resultat = (simulateur.getEtatDuJeu()==EtatDuJeu.SUCCES) ? "Vous avez GAGNE":"Vous avez PERDU";
         System.out.println(String.format("Impossible de jouer, la partie est finie. %s",resultat));
     }
 

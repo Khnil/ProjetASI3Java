@@ -106,6 +106,7 @@ public class JoueurHumain extends Vivant implements Executable {
       */
      private void commandeOuvrirPorte(String nomPorte)throws ActivationException, PorteInexistanteDansLaPieceException{
          this.activerActivable(this.getPiece().getPorte(nomPorte));
+         System.out.println(String.format("La porte %s est maintenant %sE",nomPorte,this.getPiece().getPorte(nomPorte).getEtat()));
      }
 
      /**
@@ -121,8 +122,8 @@ public class JoueurHumain extends Vivant implements Executable {
       * @throws PorteInexistanteDansLaPieceException
       *         Renvoie l'erreur d'une porte non présente dans la pièce où est le joueur et qu'il ne peut donc pas activer.
       */
-     private void commandeOuvrirPorte(String nomPorte, String nomObjet)throws ActivationException, PorteInexistanteDansLaPieceException,ObjetNonPossedeParLeVivantException{
-         this.activerActivableAvecObjet(this.getPiece().getPorte(nomPorte),this.getObjet(nomObjet));
+     private void commandeOuvrirPorte(String nomPorte, String nomObjet)throws ActivationException,ObjetNonPossedeParLeVivantException, PorteInexistanteDansLaPieceException{
+        this.activerActivableAvecObjet(this.getPiece().getPorte(nomPorte),this.getObjet(nomObjet));
      }
 
      /**
@@ -149,7 +150,7 @@ public class JoueurHumain extends Vivant implements Executable {
                 throw new CommandeImpossiblePourLeVivantException("Problème avec '"+ nomMethode +"' : cette commande n'existe pas pour le vivant "+this.getNom());
             }
             catch(IllegalArgumentException e){
-                throw new CommandeImpossiblePourLeVivantException("Problème avec la commande '"+ nomMethode +"' : Paramètres non valides");
+                System.out.println("Problème avec la commande '"+ nomMethode +"' : Paramètres non valides");
             }
             catch(InvocationTargetException e){
                 System.err.println(e.getCause().getMessage());

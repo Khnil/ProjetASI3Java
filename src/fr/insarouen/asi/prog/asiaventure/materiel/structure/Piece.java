@@ -264,8 +264,12 @@ public class Piece extends ElementStructurel implements java.io.Serializable {
      *
      * @return La porte dont on a donné le nom.
      */
-    public Porte getPorte(String nomPorte){
-        return this.portes.get(nomPorte);
+    public Porte getPorte(String nomPorte) throws PorteInexistanteDansLaPieceException{
+        if (this.portes.get(nomPorte)==null) {
+            throw new PorteInexistanteDansLaPieceException("La porte "+nomPorte+" n'existe pas.");
+
+        }
+    return this.portes.get(nomPorte);
     }
 
     /**
