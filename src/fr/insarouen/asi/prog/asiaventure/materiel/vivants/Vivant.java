@@ -88,7 +88,7 @@ public class Vivant extends Entite{
      */
     public void prendre(String nomObj) throws ObjetAbsentDeLaPieceException,
                     ObjetNonDeplacableException{
-        if (!(this.piece.contientObjet(nomObj))||(getObjet(nomObj)==null)) {
+        if (!(this.piece.contientObjet(nomObj))) {
             throw new ObjetAbsentDeLaPieceException(nomObj+" est absent de la piece "+this.piece.getNom());}
         Objet obj = piece.retirer(nomObj);
         if (!obj.estDeplacable()) {

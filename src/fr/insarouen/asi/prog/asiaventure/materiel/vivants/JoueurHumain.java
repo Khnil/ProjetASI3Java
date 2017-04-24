@@ -106,7 +106,6 @@ public class JoueurHumain extends Vivant implements Executable {
       */
      private void commandeOuvrirPorte(String nomPorte)throws ActivationException, PorteInexistanteDansLaPieceException{
          this.activerActivable(this.getPiece().getPorte(nomPorte));
-         System.out.println(String.format("La porte %s est maintenant %sE",nomPorte,this.getPiece().getPorte(nomPorte).getEtat()));
      }
 
      /**
@@ -153,7 +152,7 @@ public class JoueurHumain extends Vivant implements Executable {
                 throw new CommandeImpossiblePourLeVivantException("Problème avec la commande '"+ nomMethode +"' : Paramètres non valides");
             }
             catch(InvocationTargetException e){
-                System.err.println(e.getCause().getMessage());
+                throw e.getCause();
             }
      }
 
