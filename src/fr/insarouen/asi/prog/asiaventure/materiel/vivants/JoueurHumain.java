@@ -150,7 +150,7 @@ public class JoueurHumain extends Vivant implements Executable {
                 throw new CommandeImpossiblePourLeVivantException("Problème avec '"+ nomMethode +"' : cette commande n'existe pas pour le vivant "+this.getNom());
             }
             catch(IllegalArgumentException e){
-                System.out.println("Problème avec la commande '"+ nomMethode +"' : Paramètres non valides");
+                throw new CommandeImpossiblePourLeVivantException("Problème avec la commande '"+ nomMethode +"' : Paramètres non valides");
             }
             catch(InvocationTargetException e){
                 System.err.println(e.getCause().getMessage());

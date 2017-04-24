@@ -124,7 +124,6 @@ public class Simulateur {
      */
     private void lireMonde(Scanner scan){
         String nomMonde = scan.next();
-        nomMonde = nomMonde.substring(1,nomMonde.length()-1);
         this.monde = new Monde(nomMonde);
     }
 
@@ -249,16 +248,18 @@ public class Simulateur {
 
     public EtatDuJeu executerUnTour() throws Throwable{
         Scanner scan = new Scanner(System.in);
+        String ordre = "";
         for (Executable e: this.monde.getExecutables()) {
             if (e instanceof JoueurHumain){
                 JoueurHumain joueur = (JoueurHumain)e; //transtypage
+
                 System.out.println(affichageSituation(joueur));
                 System.out.println("\n Que voulez vous faire? \n");
                 System.out.println("\t OuvrirPorte \n");
                 System.out.println("\t Franchir \n");
                 System.out.println("\t Poser \n");
                 System.out.println("\t Prendre \n");
-                String ordre = scan.next();
+                ordre = scan.next();
                 joueur.setOrdre(ordre);
             }
         }
@@ -267,7 +268,7 @@ public class Simulateur {
             try{
                 e.executer();
             } catch (ASIAventureException exception){
-                exception.printStackTrace();
+                System.out.println(exception.getMessage());
             }
         }
 

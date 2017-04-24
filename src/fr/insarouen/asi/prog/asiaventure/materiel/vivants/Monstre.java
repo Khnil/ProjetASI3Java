@@ -58,18 +58,12 @@ public class Monstre extends Vivant implements Executable{
             System.out.println("Choix porte");
             porteElue = choixHasardPorte(portes);
             if (porteElue==null){
-                System.out.println("porte nulle");
                 break;}
             try{
-                System.out.println("try");
                 if (porteElue.getEtat()==Etat.FERME){
-                    System.out.println("try - if");
                     this.activerActivable(porteElue);}
-                System.out.println("franchir");
                 this.franchir(porteElue);
-                System.out.println("a franchi");
                 estPasse = true;
-                System.out.println("est passe");
                 }
             catch(ASIAventureException e){
                     // il n'est pas passe
