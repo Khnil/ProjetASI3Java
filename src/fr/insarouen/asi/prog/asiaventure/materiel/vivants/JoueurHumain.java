@@ -129,14 +129,11 @@ public class JoueurHumain extends Vivant implements Executable {
       * Cette méthode n'est pas encore définie.
       */
      public void executer() throws CommandeImpossiblePourLeVivantException, Throwable{
-            String[] mots = ordreAFaire.split(" ");
+            String[] mots = ordreAFaire.split(":");
             String ordreDonne = mots[0];
 
             ordreDonne = ordreDonne.substring(0,1).toUpperCase()+ordreDonne.substring(1);
             String nomMethode = "commande"+ordreDonne;
-
-
-            System.out.println("\n"+nomMethode+"\n");
 
             Class[] paramsFormels = new Class[mots.length-1];
             for (int i=0; i<paramsFormels.length;i++){

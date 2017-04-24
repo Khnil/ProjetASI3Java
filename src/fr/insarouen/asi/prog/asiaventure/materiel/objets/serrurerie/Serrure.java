@@ -32,6 +32,8 @@ public class Serrure extends Objet implements Activable{
      */
     private Etat etat;
 
+    private String nom;
+
     /**
      * Lors de la construction d'une serrure, si seulement un nom de monde est donné alors la serrure sera créée dans le monde donné avec un nom aléatoire.
      *
@@ -57,7 +59,7 @@ public class Serrure extends Objet implements Activable{
      */
     public Serrure(String nom,Monde monde)throws NomDEntiteDejaUtiliseDansLeMondeException{
         super(nom,monde);
-        //clef = creerClef();
+        this.nom = nom;
         etat = Etat.VERROUILLE;
     }
 
@@ -72,7 +74,7 @@ public class Serrure extends Objet implements Activable{
         {
             do{
                 try{
-                    this.clef = new Clef(creerNomAlea("Clef")+this.getMonde(),this.getMonde());
+                    this.clef = new Clef(creerNomAlea(this.nom),this.getMonde());
                     }
                 catch (NomDEntiteDejaUtiliseDansLeMondeException e) {
                 //on retire un nom aleatoire
@@ -166,10 +168,10 @@ public class Serrure extends Objet implements Activable{
                 String nomAlea = String.format("%d",nombreAlea);
 
                 if (param == "Serrure") {
-                    nomAleatoire = String.format("Serrure numero %s",nomAlea);
+                    nomAleatoire = String.format("Serrure_numero_%s",nomAlea);
                 }
                 else{
-                    nomAleatoire = String.format("Clef %s de la serrure numero ",nomAlea);
+                    nomAleatoire = String.format("Clef_%s_de_la_%s",nomAlea,param);
                 }
 
         return nomAleatoire;

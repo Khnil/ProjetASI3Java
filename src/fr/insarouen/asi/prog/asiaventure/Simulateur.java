@@ -13,6 +13,7 @@ import fr.insarouen.asi.prog.asiaventure.materiel.objets.serrurerie.Serrure;
 import fr.insarouen.asi.prog.asiaventure.materiel.objets.serrurerie.Clef;
 import fr.insarouen.asi.prog.asiaventure.materiel.structure.Porte;
 import fr.insarouen.asi.prog.asiaventure.materiel.vivants.JoueurHumain;
+import fr.insarouen.asi.prog.asiaventure.materiel.vivants.Vivant;
 import fr.insarouen.asi.prog.asiaventure.materiel.Executable;
 
 /**
@@ -48,6 +49,7 @@ public class Simulateur {
      */
     public Simulateur(ObjectInputStream ois)throws IOException,ClassNotFoundException{
         this.monde = (Monde)ois.readObject();
+        this.conditionDeFin = (LinkedList<ConditionDeFin>)ois.readObject();
         this.jeu = (EtatDuJeu)ois.readObject();
     }
 
@@ -66,6 +68,7 @@ public class Simulateur {
      */
     public Simulateur(Reader reader)throws IOException,NomDEntiteDejaUtiliseDansLeMondeException{
         jeu = EtatDuJeu.ENCOURS;
+        this.conditionDeFin = new LinkedList<>();
         Scanner scan = new Scanner(reader);
         do {
             switch(scan.next()){
@@ -87,6 +90,9 @@ public class Simulateur {
                 case "JoueurHumain" :
                 lireJoueurHumain(scan);
                 break;
+                case "ConditionDeFinVivantDansPiece":
+                lireConditionDeFinVivantDansPiece(scan);
+                break;
             }
         } while (scan.hasNext());
     }
@@ -106,6 +112,7 @@ public class Simulateur {
      */
     public void enregistrer(ObjectOutputStream oos)throws IOException{
         oos.writeObject(this.monde);
+        oos.writeObject(this.conditionDeFin);
         oos.writeObject(this.jeu);
     }
 
@@ -221,6 +228,19 @@ public class Simulateur {
         nomPiece = nomPiece.substring(1,nomPiece.length()-1);
         Piece piece = (Piece)this.monde.getEntite(nomPiece);
         new JoueurHumain(nomHumain,this.monde,pv,pf,piece);
+    }
+
+    private void lireConditionDeFinVivantDansPiece(Scanner sc) {
+        String etat = sc.next();
+        String nomVivant = sc.next();
+        nomVivant = nomVivant.substring(1,nomVivant.length()-1);
+        String nomPiece = sc.next();
+        nomPiece = nomPiece.substring(1,nomPiece.length()-1);
+        Vivant joueur = (Vivant)this.monde.getEntite(nomVivant);
+        Piece piece = (Piece)this.monde.getEntite(nomPiece);
+        EtatDuJeu etatDuJeu = EtatDuJeu.valueOf(etat);
+        ConditionDeFin cond = new ConditionDeFinVivantDansPiece(etatDuJeu,joueur,piece);
+        this.conditionDeFin.add(cond);
     }
 
     public EtatDuJeu getEtatDuJeu(){
