@@ -97,6 +97,11 @@ public class Simulateur {
         } while (scan.hasNext());
     }
 
+    /**
+     * Cette méthode sert à retourner le monde du simulateur.
+     *
+     * @return Le monde du simulateur.
+     */
     public Monde getMonde() {
         return this.monde;
     }
@@ -229,6 +234,16 @@ public class Simulateur {
         new JoueurHumain(nomHumain,this.monde,pv,pf,piece);
     }
 
+    /**
+     * Cette méthode sert à lire et créer une condition de fin avec un vivant dans une pièce du fichier de sauvegarde.Pour cela elle lit l'état du jeu lorsque celle ci est remplie,
+     * Puis lis le nom du vivant qui doit être dans la pièce, enlève les guillemets,
+     * Puis lis le nom de la pièce dans laquelle le vivant doit être, enlève les guillements,
+     * Enfin elle créée la condition de fin avec les caractéristiques données et l'ajoute aux conditions de fin du simulateur.
+     *
+     * @param sc
+     *          Le scanner à partir duquel on lit la condition de fin.
+     *
+     */
     private void lireConditionDeFinVivantDansPiece(Scanner sc) {
         String etat = sc.next();
         String nomVivant = sc.next();
@@ -242,10 +257,25 @@ public class Simulateur {
         this.conditionDeFin.add(cond);
     }
 
+    /**
+     * Cette méthode sert à retourner l'état du jeu du simulateur.
+     *
+     * @return L'état du jeu du simulateur.
+     */
     public EtatDuJeu getEtatDuJeu(){
         return jeu;
     }
 
+    /**
+     * Cette méthode sert à exécuter un tour de jeu. Pour cela Il va exécuter tous les exécutables existant dans la partie. Si cet exécutable est un joueur humain alors il va récupérer l'ordre à donner à celui ci en demandant un input de l'utilisateur.
+     * Sinon la méthode va essayer d'exécuter tous les exécutables en question. Si ça n'est pas possible elle va renvoyer un message d'erreur.
+     * Finalement la méthode stocke l'état du jeu actuel puis le renvoie.
+     *
+     * @return L'état du jeu du simulateur à la fin du tour de jeu.
+     *
+     * @throws Throwable
+     *          Renvoie toute erreur pouvant être renvoyée.
+     */
     public EtatDuJeu executerUnTour() throws Throwable{
         Scanner scan = new Scanner(System.in);
         String ordre = "";
@@ -284,6 +314,11 @@ public class Simulateur {
         return getEtatDuJeu();
     }
 
+    /**
+     * Cette méthode sert à afficher l'état actuel de la partie pour donner les informations qui permettront au joueur de prendre une décision.
+     *
+     * @return Un string servant à liste l'état de la partie.
+     */
     private String affichageSituation(JoueurHumain joueur){
         StringBuilder situationActuelle = new StringBuilder("\n");
         situationActuelle.append(joueur.getMonde().toString());
@@ -293,6 +328,11 @@ public class Simulateur {
         return situationActuelle.toString();
     }
 
+    /**
+     * Cette méthode sert à exécuter des tours de jeu à jusqu'à ce que l'état du jeu ne soit plus ENCOURS.
+     *
+     * @return L'état du jeu du simulateur après les nombreux tours.
+     */
     public EtatDuJeu executerJusquALaFin() throws Throwable{
         do {
             executerUnTour();

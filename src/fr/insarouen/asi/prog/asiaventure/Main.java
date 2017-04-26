@@ -84,8 +84,10 @@ public class Main{
     }
 
     /**
-     * Cette méthode renvoie au choix "Jouer" Celle ci reste encore à définir.
+     * Cette méthode renvoie au choix "Jouer" Si l'état du jeu est ENCOURS alors la méthode va exécuter un tour puis demander si l'utilisateur veut refaire un tour. Si l'utilisteur le shouaite, la méthode va alors boucler et jouer encore.
      *
+     * @throws Throwable
+     *          Renvoie toutes les erreurs possibles.
      */
     private static void choix1() throws Throwable{
         String choix = "oui";

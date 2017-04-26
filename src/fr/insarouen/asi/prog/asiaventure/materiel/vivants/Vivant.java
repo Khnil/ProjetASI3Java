@@ -320,6 +320,9 @@ public class Vivant extends Entite{
         return laChaine.toString();
     }
 
+    /**
+     * Cette méthode sert à modifier les points de vie d'un vivant. (Si celui ci est heal ou blessé)
+     */
     public void setPointsDeVie(int pointVie){
         this.PV = pointVie;
     }

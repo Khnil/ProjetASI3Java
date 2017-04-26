@@ -87,6 +87,14 @@ public class Monstre extends Vivant implements Executable{
     return tableauDesPortes[indiceAlea];
    }
 
+   /**
+    * Cette méthode sert à échanger les objets présents dans la pièce avec les objets du stuff du monstre. Pour cela on range les objets de la pièce dans une variable temporaire.
+    * Puis on depose les objets de l'inventaire du monstre dans la pièce. Enfin  on prend les objets de la pièce qui sont dans le temporaire dans l'inventaire du monstre.
+    *
+    * @throws Throwable
+    *         Renvoie toutes les erreurs possibles.
+    *
+    */
    private void echangerObjetsPieceMonstre() throws Throwable{
        Map<String,Objet> objetsPiece = this.getPiece().getObjets();
        Map<String,Objet> objetsMonstre = this.getObjets();

@@ -103,7 +103,7 @@ public class Porte extends ElementStructurel implements Activable{
     public void activer() throws ActivationImpossibleException{
         if (!((this.getEtat().equals(Etat.FERME))||(this.getEtat().equals(Etat.OUVERT))))
           throw new ActivationImpossibleException("Porte impossible à activer");
-         
+
         this.etat = (this.etat.equals(Etat.FERME))? Etat.OUVERT : Etat.FERME;
     }
 
@@ -178,6 +178,12 @@ public class Porte extends ElementStructurel implements Activable{
       return laChaine.toString();
     }
 
+    /**
+     * Cette méthode retourne la serrure de la porte.
+     *
+     * @return Une serrure qui est celle rattachée à la porte.
+     *
+     */
     public Serrure getSerrure(){
         return this.serrure;
     }
