@@ -126,7 +126,14 @@ public class JoueurHumain extends Vivant implements Executable {
      }
 
      /**
-      * Cette méthode n'est pas encore définie.
+      * Cette méthode correspond à l'exécution d'un tour de jeu d'un joueur.
+      * Elle récupère l'ordre donné au joueur sous forme d'ordre écrit. Elle récupère ainsi le nom de la fonction à effectuer puis les paramètres de cette fonction.
+      * Elle cherche donc toutes les méthodes déclarées pour effectuer celle qui a été entrée par l'utilisateur et l'invoquer afin d'effectuer le tour.
+      *
+      * @throws CommandeImpossiblePourLeVivantException
+      *         Renvoie l'erreur d'une commande que le vivant ne peut pas effectuer.
+      * @throws Throwable
+      *         Renvoie toutes les erreurs possibles.
       */
      public void executer() throws CommandeImpossiblePourLeVivantException, Throwable{
             String[] mots = ordreAFaire.split(":");
