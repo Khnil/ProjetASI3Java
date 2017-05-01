@@ -285,10 +285,10 @@ public class Simulateur {
 
                 System.out.println(affichageSituation(joueur));
                 System.out.println("\n Que voulez vous faire? \n");
-                System.out.println("\t OuvrirPorte \n");
-                System.out.println("\t Franchir \n");
-                System.out.println("\t Poser \n");
-                System.out.println("\t Prendre \n");
+                System.out.println("\t OuvrirPorte:nomPorte \n");
+                System.out.println("\t Franchir:nomPorte \n");
+                System.out.println("\t Poser:nomObjet \n");
+                System.out.println("\t Prendre:nomObjet \n");
                 ordre = scan.next();
                 joueur.setOrdre(ordre);
             }

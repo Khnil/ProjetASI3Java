@@ -90,11 +90,6 @@ public abstract class Entite implements java.io.Serializable{
       */
     public String toString(){
         StringBuilder chaine = new StringBuilder("");
-        chaine.append("Monde: ");
-        chaine.append(getMonde());
-        chaine.append("\n");
-        chaine.append("Nom entité: ");
-        chaine.append(getNom());
         chaine.append("\n");
         return chaine.toString();
     }
