@@ -330,7 +330,7 @@ public class Simulateur {
 
     /**
      * Cette méthode sert à exécuter des tours de jeu à jusqu'à ce que l'état du jeu ne soit plus ENCOURS.
-     *
+     * @throws Throwable renvoie l'exception throwable
      * @return L'état du jeu du simulateur après les nombreux tours.
      */
     public EtatDuJeu executerJusquALaFin() throws Throwable{

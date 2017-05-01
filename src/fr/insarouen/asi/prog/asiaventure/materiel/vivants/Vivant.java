@@ -321,7 +321,8 @@ public class Vivant extends Entite{
     }
 
     /**
-     * Cette méthode sert à modifier les points de vie d'un vivant. (Si celui ci est heal ou blessé)
+     * Permet de modifier les points de vie d'un vivant
+     * @param  pointVie         pointVie nombre de points de vie du vivant
      */
     public void setPointsDeVie(int pointVie){
         this.PV = pointVie;

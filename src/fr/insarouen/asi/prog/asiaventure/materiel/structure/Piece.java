@@ -261,7 +261,7 @@ public class Piece extends ElementStructurel implements java.io.Serializable {
      *
      * @param nomPorte
      *         nom de la porte qu'on cherche à retourner.
-     *
+     * @throws PorteInexistanteDansLaPieceException renvoie l'exception de la porte inexistante dans la piece
      * @return La porte dont on a donné le nom.
      */
     public Porte getPorte(String nomPorte) throws PorteInexistanteDansLaPieceException{

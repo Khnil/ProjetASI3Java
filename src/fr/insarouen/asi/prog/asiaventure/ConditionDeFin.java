@@ -40,6 +40,7 @@ public abstract class ConditionDeFin extends java.lang.Object implements java.io
 
     /**
      * Méthode qui vérifie si la condition est remplie ou non. Méthode abstraite.
+     * @return l'état du jeu
      */
     public abstract EtatDuJeu verifierCondition();
 }
